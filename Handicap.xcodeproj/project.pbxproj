@@ -66,6 +66,7 @@
 		E3FD2B8D18D9C4CF00E595A1 /* UQDateField2.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD2B8C18D9C4CF00E595A1 /* UQDateField2.m */; };
 		E3FD2B9F18DBBCE500E595A1 /* HandicapModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3FD2B9D18DBBCE500E595A1 /* HandicapModel.xcdatamodeld */; };
 		E3FDE04B18DBC74100EDEE5D /* GHSelectPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FDE04A18DBC74100EDEE5D /* GHSelectPlayersViewController.m */; };
+		E3FDE04D18DBCDB800EDEE5D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FDE04C18DBCDB800EDEE5D /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,7 @@
 		E3FD2B8C18D9C4CF00E595A1 /* UQDateField2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UQDateField2.m; sourceTree = "<group>"; };
 		E3FD2B9E18DBBCE500E595A1 /* HandicapModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HandicapModel.xcdatamodel; sourceTree = "<group>"; };
 		E3FDE04A18DBC74100EDEE5D /* GHSelectPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSelectPlayersViewController.m; sourceTree = "<group>"; };
+		E3FDE04C18DBCDB800EDEE5D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		E3FD298618D9C17200E595A1 = {
 			isa = PBXGroup;
 			children = (
+				E3FDE04C18DBCDB800EDEE5D /* Media.xcassets */,
 				E3FD2B7B18D9C3F400E595A1 /* UQ_ios_shared */,
 				E3FD2A1C18D9C23E00E595A1 /* SSDataKit */,
 				E3FD299818D9C17200E595A1 /* Handicap */,
@@ -505,6 +508,7 @@
 				E3FD2A0218D9C1B200E595A1 /* Handicap-Info.plist in Resources */,
 				E3FD29FD18D9C1B200E595A1 /* Default-568h@2x.png in Resources */,
 				E3FD2A0018D9C1B200E595A1 /* InfoPlist.strings in Resources */,
+				E3FDE04D18DBCDB800EDEE5D /* Media.xcassets in Resources */,
 				E3FD2A0518D9C1B200E595A1 /* 14-gear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,7 +705,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0640A20F-6DD3-45E0-8A15-4AACF8466ECC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -711,10 +717,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: IPWN TECHNOLOGIES LLC (FSK7LGJ2K7)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0640A20F-6DD3-45E0-8A15-4AACF8466ECC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
