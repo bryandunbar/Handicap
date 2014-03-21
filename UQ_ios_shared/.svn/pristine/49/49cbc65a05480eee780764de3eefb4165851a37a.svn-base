@@ -1,0 +1,52 @@
+//
+//  SharedConstants.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 12/30/12.
+//  Copyright (c) 2012 iPwn Technologies. All rights reserved.
+//
+
+#ifndef uHost_SharedConstants_h
+#define uHost_SharedConstants_h
+
+#if LOCAL
+static NSString * const kUQRestAPIBaseURLString = @"http://localhost:3363/";
+static NSString * const kUQImageBaseURLString = @"http://localhost:3363/";
+#endif
+
+#if TEST
+static NSString * const kUQRestAPIBaseURLString = @"http://test.api.uq.ipwntech.com/UQRest.svc/";
+static NSString * const kUQHandlerBaseURLString = @"http://test.api.uq.ipwntech.com/handlers/";
+static NSString * const kUQImageBaseURLString = @"http://test.api.uq.ipwntech.com/handlers/ImageRenderer.ashx";
+#endif
+
+#if PROD
+static NSString * const kUQRestAPIBaseURLString = @"https://api.uq.ipwntech.com/UQRest.svc";
+static NSString * const kUQImageBaseURLString = @"https://api.uq.ipwntech.com/handlers/ImageRenderer.ashx";
+static NSString * const kUQHandlerBaseURLString = @"https://api.uq.ipwntech.com/handlers/";
+#endif
+
+
+static NSString * const kUQRestAPIKey = @"{cd171f7c-560d-4a62-8d65-16b87419a58c}";
+
+static NSString * const kServerDateFormat = @"MM/dd/yyyy hh:mm:ss.SSS a";
+
+#define METERS_TO_MILES 0.000621371
+#define MILES_TO_METERS 1609.344
+
+#define HOURS_TO_SECONDS(h) (h * 60 * 60)
+
+
+#define kAcceptableMinutesBetweenUpdates 10.0
+
+
+typedef enum UQApiErrors {
+    UQApiErrorOther = 0,
+    UQApiErrorNotAuthorized = 1,
+    UQApiErrorUserAlreadyExists = 2,
+    UQApiErrorInvalidUsernameOrPassword = 3,
+    UQApiErrorAccountNotActivated = 4,
+    UQApiErrorUserNotFoundForGivenNameOrEmail = 5
+} UQApiErrors;
+
+#endif

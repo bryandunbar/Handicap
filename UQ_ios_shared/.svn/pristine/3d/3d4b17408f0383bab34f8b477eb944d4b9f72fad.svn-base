@@ -1,0 +1,127 @@
+ //
+//  UQHudView.m
+//
+
+#import "UQHudView.h"
+
+@implementation UQHudView
+@synthesize HUD;
+
++(UQHudView*)sharedHUD {
+    
+    static dispatch_once_t once;
+    static UQHudView *sharedHud;
+    dispatch_once(&once, ^ { sharedHud = [[self alloc] init]; });
+    return sharedHud;
+}
+
+-(void) show {
+	[self show:nil animated:YES];
+}
+-(void) show:(BOOL)animated {
+	[self show:nil animated:animated];
+}
+-(void) show:(NSString *)message animated:(BOOL)animated inView:(UIView *)vw {
+    
+	// HUD already visible
+	if (HUD != nil) {
+		HUD.labelText = message;
+		return;
+	}
+	
+	// Show status bar icon
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+	// Create and show the HUD
+	UIWindow *window = [UIApplication sharedApplication].keyWindow;
+	if (vw == nil) {
+		HUD = [[MBProgressHUD alloc] initWithWindow:window shouldRotateHUD:TRUE];
+	}
+	else {
+		HUD = [[MBProgressHUD alloc] initWithWindow:window shouldRotateHUD:FALSE];
+	}
+    
+	HUD.labelFont = [UIFont systemFontOfSize:14.0];
+	HUD.labelText = message;
+    
+	if (vw == nil) {
+		[window addSubview:HUD];
+	}
+	else {
+		[vw addSubview:HUD];
+		[HUD setCenter:vw.center];
+	}
+	
+	[HUD show:animated];
+}
+
+-(void) show:(NSString *)message animated:(BOOL)animated {
+	[self show:message animated:animated inView:nil];
+}
+
+-(void) hide {
+	[self hide:YES];
+}
+-(void) hide:(BOOL)animated {
+	// No HUD to hide
+	if (HUD == nil) {
+		return;
+	}
+	
+	// Stop status bar icon
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[HUD hide:animated];
+	HUD = nil;
+}
+
+
+
+-(void) showHUD:(NSString*)message forTime:(NSTimeInterval)seconds inView:(UIView *)vw {
+	// Create and show the HUD
+	UIWindow *window = [UIApplication sharedApplication].keyWindow;
+	MBProgressHUD *theHud;
+	if (vw == nil) {
+		theHud = [[MBProgressHUD alloc] initWithWindow:window shouldRotateHUD:TRUE];
+	}
+	else {
+		theHud = [[MBProgressHUD alloc] initWithWindow:window shouldRotateHUD:FALSE];
+	}
+    
+	theHud.customView = [[UIView alloc] init];
+	theHud.mode = MBProgressHUDModeCustomView;
+	theHud.opacity = .75;
+	theHud.labelText = message;
+	if (vw == nil) {
+		[window addSubview:theHud];
+	}
+	else {
+		[vw addSubview:theHud];
+		[theHud setCenter:vw.center];
+	}
+    
+	[theHud show:YES];
+	
+	[theHud performSelector:@selector(hide:) withObject:[NSNumber numberWithBool:YES] afterDelay:seconds];
+}
+
+-(void) showHUD:(NSString*)message forTime:(NSTimeInterval)seconds {
+	[self showHUD:message forTime:seconds inView:nil];
+}
+/*
+ -(void) showHUD:(NSString*)message forTime:(NSTimeInterval)seconds atPoint:(CGPoint)point inView:(UIView *)v{
+ // Create and show the HUD
+ UIWindow *window = [UIApplication sharedApplication].keyWindow;
+ MBProgressHUD *theHud = [[MBProgressHUD alloc] initWithWindow:window];
+ theHud.customView = [[UIView alloc] init];
+ theHud.mode = MBProgressHUDModeCustomView;
+ theHud.opacity = .75;
+ theHud.labelText = message;
+ [v addSubview:theHud];
+ [theHud setCenter:point];
+ [theHud show:YES];
+ 
+ [theHud performSelector:@selector(hide:) withObject:[NSNumber numberWithBool:YES] afterDelay:seconds];
+ [theHud release];
+ }*/
+
+@end

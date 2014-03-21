@@ -1,0 +1,39 @@
+//
+//  UQJSONRequestOperation.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/1/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "UQJSONRequestOperation.h"
+
+@interface UQJSONRequestOperation ()
+@property (nonatomic,strong) NSError *uqError;
+@end
+
+@implementation UQJSONRequestOperation
+@synthesize uqError=_uqError;
+
+-(id)responseJSON {
+    
+    id json = [super responseJSON];
+    
+    if (!self.error) {
+        // Should have good JSON at this point, so now check the UQ Status
+        BOOL success = [[json objectForKey:kStatusKey] boolValue];
+        if (!success) {
+            NSNumber *errorNumber = [json objectForKey:kErrorNumber];
+            
+            // HACK HERE, setJSONError is not visible
+            [self performSelector:@selector(setJSONError:) withObject:[NSError errorWithDomain:@"Server" code:[errorNumber intValue]
+                                                                                      userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[json objectForKey:kErrorKey],NSLocalizedDescriptionKey,nil]]];
+            
+        }
+
+    }
+    
+    return [json valueForKeyPath:kResultKey];
+}
+
+@end

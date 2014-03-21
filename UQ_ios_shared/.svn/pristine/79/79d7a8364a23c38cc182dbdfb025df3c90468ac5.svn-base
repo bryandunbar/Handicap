@@ -1,0 +1,49 @@
+//
+//  NSNotification+CoreData.m
+//  uHost
+//
+//  Created by Bryan Dunbar on 1/3/13.
+//  Copyright (c) 2013 iPwn Technologies. All rights reserved.
+//
+
+#import "NSNotification+CoreData.h"
+
+@implementation NSNotification (CoreData)
+
+-(BOOL)hasDataChanges {
+    
+    if ([self.object isKindOfClass:[NSManagedObjectContext class]]) {
+        NSArray *inserted = [self.userInfo valueForKey:NSInsertedObjectsKey];
+        NSArray *updated = [self.userInfo valueForKey:NSUpdatedObjectsKey];
+        NSArray *deleted = [self.userInfo valueForKey:NSDeletedObjectsKey];
+        
+        return (inserted.count > 0 || updated.count > 0 || deleted.count > 0);
+    }
+    return NO;
+}
+-(BOOL)hasChangedEntity:(NSString *)entityName {
+    
+    if ([self.object isKindOfClass:[NSManagedObjectContext class]]) {
+        NSArray *inserted = [self.userInfo valueForKey:NSInsertedObjectsKey];
+        NSArray *updated = [self.userInfo valueForKey:NSUpdatedObjectsKey];
+        NSArray *deleted = [self.userInfo valueForKey:NSDeletedObjectsKey];
+        
+        for (NSManagedObject *obj in inserted) {
+            if ([obj.entity.name isEqualToString:entityName]) return YES;
+        }
+        for (NSManagedObject *obj in updated) {
+            if ([obj.entity.name isEqualToString:entityName]) return YES;
+        }
+        for (NSManagedObject *obj in deleted) {
+            if ([obj.entity.name isEqualToString:entityName]) return YES;
+        }
+    }
+
+    return NO;
+
+    
+    
+}
+
+
+@end

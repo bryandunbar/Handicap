@@ -1,0 +1,15 @@
+//
+//  NSNotification+CoreData.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 1/3/13.
+//  Copyright (c) 2013 iPwn Technologies. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSNotification (CoreData)
+
+-(BOOL)hasDataChanges;
+-(BOOL)hasChangedEntity:(NSString*)entityName;
+@end

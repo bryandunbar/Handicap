@@ -1,0 +1,228 @@
+//
+//  Attraction.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/2/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "Attraction.h"
+#import "UQHTTPClient.h"
+#import "Constants.h"
+#import "NSDate+Additions.h"
+
+@implementation Attraction
+
+-(id)init {
+    if (self = [super init]) {
+        
+        // Sensible defaults
+        self.userAppMessage = @"";
+        self.desc = @"";
+        self.hoursOfOperation = @"";
+        self.qIsOpen = NO;
+        self.rezIsOpen = NO;
+        self.minApproachRez = 30;
+        self.minBetweenRez = 60;
+        self.rezPerTable = 4;
+        self.defaultACAverage = 30;
+        self.selfQWaitMin = 10;
+        self.isAugmentedAttraction = NO;
+        self.showInSearch = NO;
+        self.tableReadyMessage = @"";
+    }
+    return self;
+}
+
+-(id)initWithAttributes:(NSDictionary *)attributes {
+    return [self initWithAttributes:attributes andSearchCenter:CLLocationCoordinate2DMake(0, 0)];
+}
+-(id)initWithAttributes:(NSDictionary *)attributes andSearchCenter:(CLLocationCoordinate2D)sc {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    _attractionID = [[attributes valueForKeyPath:@"attractionID"] integerValue];
+    _attractionImageID = [[attributes valueForKeyPath:@"attractionImageID"] integerValue];
+    _name = [attributes valueForKeyPath:@"name"];
+    _priceLevel = [[attributes valueForKeyPath:@"priceLevel"] integerValue];
+    _qIsOpen = [[attributes valueForKeyPath:@"qIsOpen"] boolValue];
+    _type = [attributes valueForKeyPath:@"type"];
+    _address = [attributes valueForKeyPath:@"address"];
+    _phone = [attributes valueForKeyPath:@"phone"];
+    _hoursOfOperation = [attributes valueForKeyPath:@"hoursOfOperation"];
+    _desc = [attributes valueForKeyPath:@"description"];
+    
+    double lat = [[attributes valueForKeyPath:@"latitude"] doubleValue];
+    double lng = [[attributes valueForKeyPath:@"longitude"] doubleValue];
+    _coordinate = CLLocationCoordinate2DMake(lat, lng);
+    _tableReadyMessage = [attributes valueForKeyPath:@"tableReadyMessage"];
+    
+    
+    if (sc.latitude != 0 && sc.longitude != 0) {
+        _distanceAway = [self distanceFrom:sc];
+    }
+    
+    _estimatedWaitTime = [[attributes valueForKeyPath:@"estimatedWaitTimeInMinutes"] doubleValue];
+    _currentQueueSize = arc4random() % 20;
+    
+    NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+    
+    _openTime = [NSDate dateFromString:[attributes valueForKeyPath:@"openTimeForToday"] withFormat:kServerDateFormat andTimezone:utc];
+    _closeTime = [NSDate dateFromString:[attributes valueForKeyPath:@"closeTimeForToday"] withFormat:kServerDateFormat andTimezone:utc];
+    
+    
+    _rezIsOpen = [[attributes valueForKey:@"rezIsOpen"] boolValue];
+    _rezPerTable = [[attributes valueForKey:@"rezPerTable"] intValue];
+    _minBetweenRez = [[attributes valueForKey:@"minBetweenRez"] intValue];
+    _minApproachRez = [[attributes valueForKey:@"minApproachRez"] intValue];
+    _defaultACAverage = [[attributes valueForKey:@"defaultACAverage"] intValue];
+    _userAppMessage = [attributes valueForKey:@"userAppMessage"];
+    _selfQWaitMin = [[attributes valueForKey:@"selfQWaitMin"] intValue];
+    _showInSearch = [[attributes valueForKey:@"showInSearch"] boolValue];
+    _lastSynced = [NSDate dateFromString:[attributes valueForKeyPath:@"lastSync"] withFormat:kServerDateFormat andTimezone:utc];
+    
+    return self;
+
+
+}
+
+-(NSDictionary*)asDictionary {
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:@{
+             @"attractionID":[NSNumber numberWithInt:self.attractionID],
+             @"attractionImageID":[NSNumber numberWithInt:self.attractionImageID],
+             @"name":self.name,
+             @"priceLevel":[NSNumber numberWithInt:self.priceLevel],
+             @"qIsOpen":[NSNumber numberWithBool:self.qIsOpen],
+             @"type":self.type,
+             @"address":self.address,
+             @"phone":self.phone,
+             @"hoursOfOperation":self.hoursOfOperation,
+             @"description":self.desc,
+             @"latitude":[NSNumber numberWithDouble:self.coordinate.latitude],
+             @"longitude":[NSNumber numberWithDouble:self.coordinate.longitude],
+             @"userAppMessage":self.userAppMessage,
+             @"rezIsOpen":[NSNumber numberWithBool:self.rezIsOpen],
+             @"rezPerTable":[NSNumber numberWithInt:self.rezPerTable],
+             @"minBetweenRez":[NSNumber numberWithInt:self.minBetweenRez],
+             @"minApproachRez":[NSNumber numberWithInt:self.minApproachRez],
+             @"defaultACAverage":[NSNumber numberWithInt:self.defaultACAverage],
+             @"selfQWaitMin":[NSNumber numberWithInt:self.selfQWaitMin],
+             @"showInSearch":[NSNumber numberWithBool:self.showInSearch],
+             @"tableReadyMessage":self.tableReadyMessage
+             }];
+    
+    if (self.attractionImageID == 0) {
+        [dict removeObjectForKey:@"attractionImageID"];
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:dict];
+
+}
+-(NSURL*)imageURL {
+    
+    NSString *url = [NSString stringWithFormat:@"%@?key=%@&AttractionImageID=%d", kUQImageBaseURLString, kUQRestAPIKey, self.attractionImageID];
+    
+    NSURL *nsurl = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    return nsurl;
+}
+
+-(double) distanceFrom:(CLLocationCoordinate2D)coordinate {
+	// Calculate the distance between the searchCenter and the result lat lng
+	CLLocation *there = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+	CLLocation *here = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+	CLLocationDistance delta = [there distanceFromLocation:here];
+	return (delta * METERS_TO_MILES); // Convert meters to miles
+}
+-(BOOL)canQueue {
+    return [self canQueue:self.estimatedWaitTime]; // Default the check to the current estimated wait
+}
+-(BOOL)canQueue:(int)forWaitTime {
+    if (!self.qIsOpen) // Hard stop, they have turned queuing off on server
+        return NO;
+    
+    NSDate *now = [NSDate date];
+    
+    // Check how long its been since we've got updated data from the server. If more than kAcceptableMinutesBetweenUpdates
+    // hard stop
+    NSTimeInterval minsSinceLastUpdate = abs([self.lastSynced timeIntervalSinceNow] / 60.0);
+    if (minsSinceLastUpdate > kAcceptableMinutesBetweenUpdates)
+        return NO;
+    
+    // Check that the attraction is open, ie now is between open and close
+    BOOL attractionIsOpen = [now compare:self.openTime] == NSOrderedDescending && [now compare:self.closeTime] == NSOrderedAscending;
+    if (!attractionIsOpen)
+        return NO;
+    
+    // Finally check that the wait time is at least the min
+    return forWaitTime >= self.selfQWaitMin;
+}
+
+#pragma mark -
+#pragma mark NSCoding
+#pragma mark -
+#pragma mark NSCoding
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    
+    [aCoder encodeInt:self.attractionID forKey:@"attractionID"];
+    [aCoder encodeInt:self.attractionImageID forKey:@"attractionImageID"];
+    [aCoder encodeObject:self.address forKey:@"address"];
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeInt:self.priceLevel forKey:@"priceLevel"];
+    [aCoder encodeObject:self.type forKey:@"type"];
+    [aCoder encodeObject:self.imageURL forKey:@"imageURL"];
+    [aCoder encodeObject:self.phone forKey:@"phone"];
+    [aCoder encodeObject:self.openTime forKey:@"openTime"];
+    [aCoder encodeObject:self.closeTime forKey:@"closeTime"];
+    [aCoder encodeBool:self.qIsOpen forKey:@"qIsOpen"];
+    [aCoder encodeObject:self.desc forKey:@"desc"];
+    [aCoder encodeObject:self.hoursOfOperation forKey:@"hoursOfOperation"];
+    [aCoder encodeDouble:self.coordinate.latitude forKey:@"latitude"];
+    [aCoder encodeDouble:self.coordinate.longitude forKey:@"longitude"];
+    
+    [aCoder encodeBool:_rezIsOpen forKey:@"rezIsOpen"];
+    [aCoder encodeInt:_rezPerTable forKey:@"rezPerTable"];
+    [aCoder encodeInt:_minBetweenRez forKey:@"minBetweenRez"];
+    [aCoder encodeInt:_minApproachRez forKey:@"minApproachRez"];
+    [aCoder encodeObject:_userAppMessage forKey:@"userAppMessage"];
+    [aCoder encodeInt:_selfQWaitMin forKey:@"selfQWaitMin"];
+    [aCoder encodeBool:_showInSearch forKey:@"showInSearch"];
+    [aCoder encodeObject:_tableReadyMessage forKey:@"tableReadyMessage"];
+}
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    
+    
+    if (self = [self init]) {
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _attractionID = [aDecoder decodeIntForKey:@"attractionID"];
+        _attractionImageID = [aDecoder decodeIntForKey:@"attractionImageID"];
+        _address = [aDecoder decodeObjectForKey:@"address"];
+        _priceLevel = [aDecoder decodeIntForKey:@"priceLevel"];
+        _type = [aDecoder decodeObjectForKey:@"type"];
+        _imageURL = [aDecoder decodeObjectForKey:@"imageURL"];
+        _phone = [aDecoder decodeObjectForKey:@"phone"];
+        _openTime = [aDecoder decodeObjectForKey:@"openTime"];
+        _closeTime = [aDecoder decodeObjectForKey:@"closeTime"];
+        _qIsOpen = [aDecoder decodeBoolForKey:@"qIsOpen"];
+        _desc = [aDecoder decodeObjectForKey:@"desc"];
+        _hoursOfOperation = [aDecoder decodeObjectForKey:@"hoursOfOperation"];
+        
+        _rezIsOpen = [aDecoder decodeBoolForKey:@"rezIsOpen"];
+        _rezPerTable = [aDecoder decodeIntForKey:@"rezPerTable"];
+        _minBetweenRez = [aDecoder decodeIntForKey:@"minBetweenRez"];
+        _minApproachRez = [aDecoder decodeIntForKey:@"minApproachRez"];
+        _userAppMessage = [aDecoder decodeObjectForKey:@"userAppMessage"];
+        _selfQWaitMin = [aDecoder decodeIntForKey:@"selfQWaitMin"];
+        _showInSearch = [aDecoder decodeBoolForKey:@"showInSearch"];
+        
+        self.coordinate = CLLocationCoordinate2DMake([aDecoder decodeDoubleForKey:@"latitude"], [aDecoder decodeDoubleForKey:@"longitude"]);
+        
+        _tableReadyMessage = [aDecoder decodeObjectForKey:@"tableReadyMessage"];
+    }
+    return self;
+    
+}
+
+@end

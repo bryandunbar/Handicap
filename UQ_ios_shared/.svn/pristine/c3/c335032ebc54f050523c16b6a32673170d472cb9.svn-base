@@ -1,0 +1,63 @@
+//
+//  UIImage+RoundedImage.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 11/12/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "UIImage+RoundedImage.h"
+
+@implementation UIImage (RoundedImage)
+
++ (UIImage *)roundedImageWithImage:(UIImage *)image {
+    return [UIImage roundedImageWithImage:image applyAlpha:NO];
+}
++ (UIImage *)roundedImageWithImage:(UIImage *)image applyAlpha:(BOOL)applyAlpha {
+    if (image) {
+        
+        if (applyAlpha) {
+            image = [image imageWithAlpha];
+        }
+        CGContextRef cx = CGBitmapContextCreate(NULL, image.size.width, image.size.height, CGImageGetBitsPerComponent(image.CGImage), 0, CGImageGetColorSpace(image.CGImage), CGImageGetBitmapInfo(image.CGImage));
+        
+        CGContextBeginPath(cx);
+        CGRect pathRect = CGRectMake(0, 0, image.size.width, image.size.height);
+        CGContextAddEllipseInRect(cx, pathRect);
+        CGContextClosePath(cx);
+        CGContextClip(cx);
+        
+        CGContextDrawImage(cx, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage);
+        
+        CGImageRef clippedImage = CGBitmapContextCreateImage(cx);
+        CGContextRelease(cx);
+        
+        UIImage *roundedImage = [UIImage imageWithCGImage:clippedImage];
+        CGImageRelease(clippedImage);
+        
+        return roundedImage;
+    }
+    
+    return nil;
+}
+
+- (UIImage *)imageWithAlpha  {
+    CGImageRef imageRef = self.CGImage;
+    CGFloat width = CGImageGetWidth(imageRef);
+    CGFloat height = CGImageGetHeight(imageRef);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context =  CGBitmapContextCreate(nil, width, height, 8, 4 * width, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    
+    CGImageRef resultImageRef = CGBitmapContextCreateImage(context);
+    UIImage *resultImage = [UIImage imageWithCGImage:resultImageRef scale:self.scale orientation:self.imageOrientation];
+    
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(resultImageRef);
+    
+    return resultImage;
+}
+
+@end

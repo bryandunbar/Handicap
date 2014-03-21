@@ -1,0 +1,50 @@
+//
+//  UQHTTPClient.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/1/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "UQHTTPClient.h"
+#import "UQJSONResponseSerializer.h"
+#import "Constants.h"
+
+@implementation UQHTTPClient
+
++(UQHTTPClient*)sharedClient {
+    static UQHTTPClient *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedClient = [[UQHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kUQRestAPIBaseURLString]];
+    });
+    
+    return _sharedClient;
+}
+
+- (id)initWithBaseURL:(NSURL *)url {
+    self = [super initWithBaseURL:url];
+    if (!self) {
+        return nil;
+    }
+    
+    self.requestSerializer = [[AFJSONRequestSerializer alloc] init];
+//    [self setParameterEncoding:AFJSONParameterEncoding];
+    self.responseSerializer = [[UQJSONResponseSerializer alloc] init];
+
+    // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
+//	[self setDefaultHeader:@"Accept" value:@"application/json"];
+    //self.requestSerializer
+    
+    return self;
+}
+
++(NSMutableDictionary*)newParams {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:kUQRestAPIKey forKey:@"key"];
+    return params;
+}
+
+
+
+
+@end

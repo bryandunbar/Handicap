@@ -1,0 +1,15 @@
+//
+//  UUID.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/30/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UUID : NSObject
+
++(NSString *)newUUID;
+
+@end

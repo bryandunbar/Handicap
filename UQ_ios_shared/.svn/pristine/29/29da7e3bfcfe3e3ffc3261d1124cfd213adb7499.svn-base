@@ -1,0 +1,21 @@
+//
+//  UUID.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/30/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "UUID.h"
+
+@implementation UUID
+
++(NSString *)newUUID {
+    
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    CFRelease(uuid);
+    
+    return [uuidStr uppercaseString];
+}
+@end

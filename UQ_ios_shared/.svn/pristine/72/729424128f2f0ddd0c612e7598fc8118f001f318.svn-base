@@ -1,0 +1,51 @@
+//
+//  BDPanelView.h
+//
+//  Created by Bryan Dunbar on 9/20/11.
+//
+
+#import <UIKit/UIKit.h>
+
+#define kMinimumHeaderHeight 32.0
+
+@interface BDPanelView : UIView {
+    
+    BOOL showHeader;
+    CGFloat headerHeight;
+    
+    UINavigationBar *_header;
+    UIView *_contentView;
+    
+    UIColor *_headerBorderColor;
+    UIColor *_conentBorderColor;
+    
+    NSString *_title;
+    
+    CGRect originalFrame;
+    BOOL isMaximized;
+    
+}
+
+@property (nonatomic, assign) BOOL showHeader;
+@property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, readonly, strong) UIView *contentView;
+@property (nonatomic, strong) UIColor *headerBorderColor;
+@property (nonatomic, strong) UIColor *contentBorderColor;
+
+
+// GETTERS/SETTERS FOR REPURPOSED NAVIGATION BAR
+@property (nonatomic, weak) UIBarButtonItem *leftBarButtonItem;
+@property (nonatomic, weak) UIBarButtonItem *rightBarButtonItem;
+@property (nonatomic, weak) UIColor *tintColor;
+@property (nonatomic, assign) UIBarStyle barStyle;
+
+-(void)addLeftBarButtonItem:(UIBarButtonItem*)barButtonItem;
+-(void)insertLeftBarButtonItem:(UIBarButtonItem*)barButtonItem atIndex:(NSUInteger)index;
+-(void)removeLeftBarButtonItem:(UIBarButtonItem*)barButtonItem;
+-(void)addRightBarButtonItem:(UIBarButtonItem*)barButtonItem;
+-(void)insertRightBarButtonItem:(UIBarButtonItem*)barButtonItem atIndex:(NSUInteger)index;
+-(void)removeRightBarButtonItem:(UIBarButtonItem*)barButtonItem;
+
+-(void)addGlobalSubView:(UIView*)view;
+@end

@@ -1,0 +1,47 @@
+//
+//  UIImage+Additions.m
+//  uHost
+//
+//  Created by Bryan Dunbar on 1/27/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import "UIImage+Additions.h"
+
+@implementation UIImage (Additions)
+
+-(UIImage*)resizedImageAtScale:(CGFloat)scale {    
+    return [self resizedImagedAtSize:CGSizeMake(self.size.width * scale, self.size.height * scale)];
+}
+-(UIImage *)resizedImagedAtSize:(CGSize)newSize {
+    CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+    CGImageRef imageRef = self.CGImage;
+    
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                newRect.size.width,
+                                                newRect.size.height,
+                                                CGImageGetBitsPerComponent(imageRef),
+                                                0,
+                                                CGImageGetColorSpace(imageRef),
+                                                CGImageGetBitmapInfo(imageRef));
+    
+    // Set the quality level to use when rescaling
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGContextSetShouldAntialias(context, true);
+    CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
+    
+    CGContextConcatCTM(context, flipVertical);
+    // Draw into the context; this scales the image
+    CGContextDrawImage(context, newRect, imageRef);
+    
+    // Get the resized image from the context and a UIImage
+    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    CGImageRelease(newImageRef);
+    UIGraphicsEndImageContext();
+    CGContextRelease(context);
+    
+    return newImage;
+}
+@end

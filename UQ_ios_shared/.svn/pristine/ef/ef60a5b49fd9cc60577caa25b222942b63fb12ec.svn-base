@@ -1,0 +1,57 @@
+//
+//  Attraction.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/2/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
+@interface Attraction : NSObject <NSCoding>
+
+@property (readonly) NSUInteger attractionID;
+@property (nonatomic) NSUInteger attractionImageID;
+
+@property (nonatomic,strong) NSString *address;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic) NSUInteger priceLevel;
+@property (nonatomic) BOOL qIsOpen;
+@property (nonatomic,strong) NSString *type;
+@property (nonatomic,strong) NSURL *imageURL;
+@property (nonatomic,strong) NSString *phone;
+@property (nonatomic,strong) NSDate *openTime;
+@property (nonatomic,strong) NSDate *closeTime;
+@property (nonatomic,strong) NSString *desc;
+@property (nonatomic,strong) NSString *hoursOfOperation;
+@property (nonatomic) int defaultACAverage;
+@property (nonatomic) int selfQWaitMin;
+@property (nonatomic) BOOL showInSearch;
+@property (nonatomic,strong) NSDate *lastSynced;
+@property (nonatomic,strong) NSString *tableReadyMessage;
+
+/** Reservation Properties **/
+@property (nonatomic) BOOL rezIsOpen;
+@property (nonatomic) int rezPerTable;
+@property (nonatomic) int minBetweenRez; // Minutes
+@property (nonatomic) int minApproachRez; // Minutes
+
+@property (nonatomic,strong) NSString *userAppMessage;
+
+/** Search Results Properites **/
+@property (nonatomic) double distanceAway;
+@property (readonly) int estimatedWaitTime; // Minutes
+@property (readonly) int currentQueueSize;
+@property (nonatomic) BOOL isAugmentedAttraction;
+/** End: Search Results Properites **/
+
+-(NSDictionary*)asDictionary;
+- (id)initWithAttributes:(NSDictionary *)attributes;
+- (id)initWithAttributes:(NSDictionary *)attributes andSearchCenter:(CLLocationCoordinate2D)coordinate;
+
+-(double)distanceFrom:(CLLocationCoordinate2D)sc;
+-(BOOL)canQueue;
+-(BOOL)canQueue:(int)forWaitTime;
+@end

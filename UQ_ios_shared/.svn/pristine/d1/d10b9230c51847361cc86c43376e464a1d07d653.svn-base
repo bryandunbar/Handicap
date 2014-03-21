@@ -1,0 +1,164 @@
+#import "UQManagedObject.h"
+#import "NSDate+Additions.h"
+#import "Constants.h"
+#import "UQSyncManager.h"
+@implementation UQManagedObject
+
+@synthesize traversed;
+
+#pragma mark -
+#pragma mark Dictionary conversion methods
+
+- (NSDictionary*) toDictionary {
+    return [self toDictionaryTraversingRelationships:YES];
+}
+
+-(NSDictionary*)toDictionaryTraversingRelationships:(BOOL)traverseRelationships
+{
+    self.traversed = YES;
+    
+    NSArray* attributes = [[[self entity] attributesByName] allKeys];
+    NSArray* relationships = [[[self entity] relationshipsByName] allKeys];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:
+                                 [attributes count] + [relationships count] + 1];
+    
+    [dict setObject:[[self class] description] forKey:@"class"];
+    NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+    for (NSString* attr in attributes) {
+        NSObject* value = [self valueForKey:attr];
+        
+        if (value != nil) {
+            
+            NSAttributeDescription *attrDesc = [[self.entity attributesByName] valueForKey:attr];
+            if (attrDesc.attributeType == NSDateAttributeType) {
+                [dict setObject:[((NSDate*)value) formattedStringUsingFormat:kServerDateFormat inTimeZone:utc] forKey:attr];
+            } else {
+                [dict setObject:value forKey:attr];
+            }
+        }
+    }
+    
+    if (traverseRelationships) {
+        for (NSString* relationship in relationships) {
+            NSObject* value = [self valueForKey:relationship];
+            
+            if ([value isKindOfClass:[NSSet class]]) {
+                // To-many relationship
+                
+                // The core data set holds a collection of managed objects
+                NSSet* relatedObjects = (NSSet*) value;
+                
+                // Our array holds a collection of dictionaries
+                NSMutableArray* dictArr = [NSMutableArray arrayWithCapacity:[relatedObjects count]];
+                
+                for (UQManagedObject* relatedObject in relatedObjects) {
+                    if (!relatedObject.traversed) {
+                        [dictArr addObject:[relatedObject toDictionary]];
+                    }
+                }
+                
+                [dict setObject:dictArr forKey:relationship];
+            }
+            else if ([value isKindOfClass:[UQManagedObject class]]) {
+                // To-one relationship
+                
+                UQManagedObject* relatedObject = (UQManagedObject*) value;
+                
+                if (!relatedObject.traversed) {
+                    // Call toDictionary on the referenced object and put the result back into our dictionary.
+                    [dict setObject:[relatedObject toDictionary] forKey:relationship];
+                }
+            }
+        }
+    }
+    
+    return dict;
+}
+
+
+- (void) populateFromDictionary:(NSDictionary*)dict
+{
+    NSManagedObjectContext* context = [self managedObjectContext];
+    
+    NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+    for (NSString* key in dict) {
+        if ([key isEqualToString:@"class"]) {
+            continue;
+        }
+        
+        NSObject* value = [dict objectForKey:key];
+        //if ([[value description] isEqualToString:@""]) value = nil;
+        
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            // This is a to-one relationship
+            UQManagedObject* relatedObject =
+            [UQManagedObject createManagedObjectFromDictionary:(NSDictionary*)value
+                                                           inContext:context];
+            
+            [self setValue:relatedObject forKey:key];
+        }
+        else if ([value isKindOfClass:[NSArray class]]) {
+            // This is a to-many relationship
+            NSArray* relatedObjectDictionaries = (NSArray*) value;
+            
+            // Get a proxy set that represents the relationship, and add related objects to it.
+            // (Note: this is provided by Core Data)
+            NSMutableSet* relatedObjects = [self mutableSetValueForKey:key];
+            
+            for (NSDictionary* relatedObjectDict in relatedObjectDictionaries) {
+                UQManagedObject* relatedObject =
+                [UQManagedObject createManagedObjectFromDictionary:relatedObjectDict
+                                                               inContext:context];
+                [relatedObjects addObject:relatedObject];
+            }
+        }
+        else if (value != nil) {
+            // This is an attribute
+            
+            // Get the attribute for the given key
+            NSAttributeDescription *attr = [[self.entity attributesByName] valueForKey:key];
+            if (attr.attributeType == NSDateAttributeType) {
+                // Our dates come as strings
+                [self setValue:[NSDate dateFromString:(NSString*)value withFormat:kServerDateFormat andTimezone:utc] forKey:key];
+            } else {
+                [self setValue:value forKey:key];
+            }
+        } 
+    }
+}
+
++ (UQManagedObject*) createManagedObjectFromDictionary:(NSDictionary*)dict inContext:(NSManagedObjectContext *)context
+
+{
+    return [UQManagedObject createManagedObjectFromDictionary:dict forEntity:[dict valueForKey:@"class"] inContext:context];
+}
+
+
++ (UQManagedObject*) createManagedObjectFromDictionary:(NSDictionary*)dict forEntity:(NSString *)entityName inContext:(NSManagedObjectContext *)context
+
+{
+    UQManagedObject* newObject =
+    (UQManagedObject*)[NSEntityDescription insertNewObjectForEntityForName:entityName
+                                                          inManagedObjectContext:context];
+    
+    [newObject populateFromDictionary:dict];
+    
+    return newObject;
+}
+
+-(void)objectWasSynced {
+
+    // Update sync state
+    [self setValue:[NSNumber numberWithBool:NO] forKey:@"isNew"];
+    [self setValue:[NSNumber numberWithInt:UQSyncStatusSynced] forKey:@"syncStatus"];
+
+    [self.managedObjectContext obtainPermanentIDsForObjects:@[self] error:nil];
+
+    self.traversed = NO;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    DLog(@"Attempt to set value for undefined key: %@ on class %@", key, [[self class] description] );
+}
+
+@end

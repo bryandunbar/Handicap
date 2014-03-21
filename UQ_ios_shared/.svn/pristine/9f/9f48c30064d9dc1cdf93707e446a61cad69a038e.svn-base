@@ -1,0 +1,16 @@
+//
+//  UIImage+RoundedImage.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 11/12/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIImage (RoundedImage)
+
++ (UIImage *)roundedImageWithImage:(UIImage *)image;
++ (UIImage *)roundedImageWithImage:(UIImage *)image applyAlpha:(BOOL)applyAlpha;
+- (UIImage *)imageWithAlpha;
+@end

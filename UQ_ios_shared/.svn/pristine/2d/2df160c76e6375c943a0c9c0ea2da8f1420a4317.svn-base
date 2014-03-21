@@ -1,0 +1,15 @@
+//
+//  UIDevice+UDID.h
+//
+//  Created by Bryan Dunbar on 3/26/12.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIDevice (UDID)
+
+-(NSString*)macAddressForInterface:(NSString*)macAddressOrNil;
+-(NSString*)UDID;
+-(NSString*)UDIDWithSalt:(NSString*)salt;
+
+@end

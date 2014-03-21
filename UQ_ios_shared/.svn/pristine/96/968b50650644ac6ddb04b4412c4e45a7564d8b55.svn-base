@@ -1,0 +1,12 @@
+//
+//  NSString+SHA1.h
+//
+//  Created by Bryan Dunbar on 3/26/12.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (SHA1)
+
+-(NSString*)sha1;
+@end

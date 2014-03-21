@@ -1,0 +1,18 @@
+//
+//  GooglePlace.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 3/27/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Attraction.h"
+@interface GooglePlace : Attraction
+
+@property (nonatomic, strong) NSString *ref;
+@property (nonatomic, strong) NSArray *reviews;
+@property (nonatomic) double avgRating;
+@property (nonatomic,strong) NSString *url;
+@property (nonatomic,strong) NSString *photoRef;
+@end

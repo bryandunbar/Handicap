@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Course" representedClassName="GHCourse" syncable="YES">
+        <attribute name="abbreviation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="slope" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tees" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="League" representedClassName="GHLeague" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="leagues" inverseEntity="Player" syncable="YES"/>
+    </entity>
+    <entity name="Player" representedClassName="GHPlayer" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="handicapIndex" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" transient="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="leagues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="League" inverseName="players" inverseEntity="League" syncable="YES"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Score" inverseName="player" inverseEntity="Score" syncable="YES"/>
+    </entity>
+    <entity name="Score" representedClassName="GHScore" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" syncable="YES"/>
+        <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="League" syncable="YES"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="scores" inverseEntity="Player" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Course" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="League" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Player" positionX="-36" positionY="9" width="128" height="135"/>
+        <element name="Score" positionX="-18" positionY="27" width="128" height="118"/>
+    </elements>
+</model>

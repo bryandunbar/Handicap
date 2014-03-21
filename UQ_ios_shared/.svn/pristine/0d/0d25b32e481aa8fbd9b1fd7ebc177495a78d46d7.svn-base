@@ -1,0 +1,22 @@
+//
+//  BDLabel.h
+//
+//  Created by Bryan Dunbar on 10/28/10.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef enum BDLabelVerticalAlignment {
+	BDLabelVerticalAlignmentTop,
+	BDLabelVerticalAlignmentMiddle,
+	BDLabelVerticalAlignmentBottom
+} BDLabelVerticalAlignment;
+
+@interface BDLabel : UILabel {
+
+	BDLabelVerticalAlignment verticalAlignment;
+}
+
+@property (nonatomic,assign) BDLabelVerticalAlignment verticalAlignment;
+
+@end

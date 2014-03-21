@@ -1,0 +1,16 @@
+//
+//  UIApplication+AppDimensions.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 1/26/13.
+//  Copyright (c) 2013 iPwn Technologies. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIApplication (AppDimensions)
+
++(CGSize) currentSize;
++(CGSize) sizeInOrientation:(UIInterfaceOrientation)orientation;
+
+@end

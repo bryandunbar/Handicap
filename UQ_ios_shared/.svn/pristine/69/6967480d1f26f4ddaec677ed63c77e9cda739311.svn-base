@@ -1,0 +1,14 @@
+//
+//  CLPlacemark+ShortState.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 3/4/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import <CoreLocation/CoreLocation.h>
+
+@interface CLPlacemark (ShortState)
+
+-(NSString *)shortState;
+@end

@@ -1,0 +1,15 @@
+//
+//  UIButton+HitTest.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 3/31/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIButton (HitTest)
+
+@property(nonatomic, assign) UIEdgeInsets hitTestEdgeInsets;
+
+@end

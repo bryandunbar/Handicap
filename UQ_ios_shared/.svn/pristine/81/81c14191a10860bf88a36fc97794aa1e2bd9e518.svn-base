@@ -1,0 +1,92 @@
+//
+//  UQPhoneNumberTextField.m
+//  uHost
+//
+//  Created by Bryan Dunbar on 1/27/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import "UQPhoneNumberTextField.h"
+#import "PhoneNumberFormatter.h"
+#import "UQNumberPad.h"
+
+@interface UQPhoneNumberTextField () {
+    BOOL semaphore;
+}
+@property (nonatomic,readonly) PhoneNumberFormatter *phoneNumberFormatter;
+-(void)autoFormatTextField:(id)sender;
+-(void)setup;
+@end
+
+@implementation UQPhoneNumberTextField
+@synthesize phoneNumberFormatter=_phoneNumberFormatter;
+
+-(PhoneNumberFormatter*)phoneNumberFormatter {
+    if (!_phoneNumberFormatter) {
+        _phoneNumberFormatter = [[PhoneNumberFormatter alloc] init];
+    }
+    return _phoneNumberFormatter;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+-(void)setup {
+    UQNumberPad *numberPad = [[UQNumberPad alloc] init];
+    [numberPad setTextView:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoFormatTextField:) name:UITextFieldTextDidChangeNotification object:self];
+
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)autoFormatTextField:(id)sender {
+    
+    if(semaphore) return;
+    /** Check Max Length **/
+    if (self.rawValue.length > 10) {
+        self.text = [self.rawValue substringToIndex:10];
+    }
+
+    semaphore = YES;
+    self.text = [self.phoneNumberFormatter formatNumber:self.rawValue];
+    semaphore = NO;
+    
+}
+
+-(NSString*)rawValue {
+    return [[self.text componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+
+}
+
+-(void)setText:(NSString *)text {
+    [super setText:text];
+    [self autoFormatTextField:nil];
+    
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

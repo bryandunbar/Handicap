@@ -1,0 +1,46 @@
+//
+//  BDLabel.m
+//
+//  Created by Bryan Dunbar on 10/28/10.
+//
+
+#import "BDLabel.h"
+
+
+@implementation BDLabel
+@synthesize verticalAlignment;
+
+-(id)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		self.verticalAlignment = BDLabelVerticalAlignmentMiddle;
+	}
+	return self;
+}
+
+-(void)setVerticalAlignment:(BDLabelVerticalAlignment)vertAlign {
+	verticalAlignment = vertAlign;
+	[self setNeedsDisplay];
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
+    CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
+    switch (self.verticalAlignment) {
+        case BDLabelVerticalAlignmentTop:
+            textRect.origin.y = bounds.origin.y;
+            break;
+        case BDLabelVerticalAlignmentBottom:
+            textRect.origin.y = bounds.origin.y + bounds.size.height - textRect.size.height;
+            break;
+        case BDLabelVerticalAlignmentMiddle:
+            // Fall through.
+        default:
+            textRect.origin.y = bounds.origin.y + (bounds.size.height - textRect.size.height) / 2.0;
+    }
+    return textRect;
+}
+
+-(void)drawTextInRect:(CGRect)requestedRect {
+    CGRect actualRect = [self textRectForBounds:requestedRect limitedToNumberOfLines:self.numberOfLines];
+    [super drawTextInRect:actualRect];
+}
+@end

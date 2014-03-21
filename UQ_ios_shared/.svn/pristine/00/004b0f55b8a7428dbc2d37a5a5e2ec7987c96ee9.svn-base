@@ -1,0 +1,30 @@
+//
+//  QueuedPatronActivity.m
+//  uHost
+//
+//  Created by Bryan Dunbar on 8/4/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import "QueuedPatronActivity.h"
+#import "Constants.h"
+#import "NSDate+Additions.h"
+
+@implementation QueuedPatronActivity
+
+-(id)initWithAttributes:(NSDictionary *)attributes  {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.activity = [attributes valueForKey:@"activity"];
+    self.attractionName = [attributes valueForKey:@"attractionName"];
+   
+    NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+    self.activityTime = [NSDate dateFromString:[attributes valueForKeyPath:@"activityTime"] withFormat:kServerDateFormat andTimezone:utc];
+    
+    return self;
+}
+
+@end

@@ -1,0 +1,17 @@
+//
+//  NSObject+setValuesForKeysWithJSONDictionary.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 1/2/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSObject (setValuesForKeysWithJSONDictionary)
+
+- (void)setValuesForKeysWithJSONDictionary:(NSDictionary *)keyedValues dateFormatter:(NSDateFormatter *)dateFormatter;
+- (void)setValuesForKeysWithJSONDictionary:(NSDictionary *)keyedValues dateFormatter:(NSDateFormatter *)dateFormatter inTimeZone:(NSTimeZone*)timeZone;
+
+
+@end

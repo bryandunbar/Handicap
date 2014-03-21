@@ -1,0 +1,24 @@
+//
+//  AttractionSchedule.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 3/6/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#define kAttractionSchduleTimeFormat @"hh:mm a"
+#define kAttractionScheduleWireTireFormat @"HH:mm:ss"
+
+@interface AttractionSchedule : NSObject
+
+@property (nonatomic) NSUInteger attractionScheduleID;
+@property (nonatomic) NSUInteger attractionID;
+@property (nonatomic) NSDate *openTime;
+@property (nonatomic) NSDate *closeTime;
+@property (nonatomic) NSUInteger dayOfWeek;
+@property (nonatomic) BOOL isOpen;
+
+-(id)initWithAttributes:(NSDictionary*)attributes;
+-(NSDictionary*)asDictionary;
+@end

@@ -1,0 +1,18 @@
+//
+//  UQHTTPClient.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/1/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "AFHTTPClient.h"
+#import "Constants.h"
+
+@interface UQHTTPClient : AFHTTPClient
+
+
++(UQHTTPClient*)sharedClient;
++(NSMutableDictionary*)newParams;
+
+@end

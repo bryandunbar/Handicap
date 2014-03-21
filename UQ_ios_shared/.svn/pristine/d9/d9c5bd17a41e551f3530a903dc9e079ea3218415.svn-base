@@ -1,0 +1,106 @@
+#import "UQNumberPad.h"
+
+#pragma mark - Private methods
+
+@interface UQNumberPad ()
+@end
+
+
+@implementation UQNumberPad
+@synthesize textView = _textView;
+
+
+-(BOOL)enableInputClicksWhenVisible {
+    return YES;
+}
+
++(UQNumberPad*)numberPadForTextView:(id<UITextInput>)textView {
+    UQNumberPad *np = [[UQNumberPad alloc] init];
+    [np setTextView:textView];
+    
+    return np;
+}
+
+- (id)init {
+	UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+	CGRect frame;
+    
+	if(UIDeviceOrientationIsLandscape(orientation))
+        frame = CGRectMake(0, 0, 1024, 352);
+    else
+        frame = CGRectMake(0, 0, 768, 264);
+	
+	self = [super initWithFrame:frame];
+	
+	if (self) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UQNumberPad" owner:self options:nil];
+		[[nib objectAtIndex:0] setFrame:frame];
+        self = [nib objectAtIndex:0];
+    }
+
+    UIImage *backgroundImg = [[UIImage imageNamed:@"keyboard-bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeTile];
+    //self.backgroundColor = [UIColor colorWithPatternImage:backgroundImg];
+    //self.backgroundColor = [UIColor colorWithRed:(195/255.0) green:(197/255.0) blue:(202/255.0) alpha:1.0];
+    self.maxLength = INT_MAX;
+	return self;
+}
+
+-(void)setTextView:(id<UITextInput>)textView {
+	
+	if ([textView isKindOfClass:[UITextView class]])
+        [(UITextView *)textView setInputView:self];
+    else if ([textView isKindOfClass:[UITextField class]])
+        [(UITextField *)textView setInputView:self];
+    
+    _textView = textView;
+}
+
+-(id<UITextInput>)textView {
+	return _textView;
+}
+
+
+/* IBActions for Keyboard Buttons */
+- (IBAction)dismissPressed:(id)sender {
+    [[UIDevice currentDevice] playInputClick];
+	
+	if ([self.textView isKindOfClass:[UITextView class]])
+        [(UITextView *)self.textView resignFirstResponder];
+	
+    else if ([self.textView isKindOfClass:[UITextField class]])
+        [(UITextField *)self.textView resignFirstResponder];
+}
+
+- (IBAction)deletePressed:(id)sender {
+    [[UIDevice currentDevice] playInputClick];
+	[self.textView deleteBackward];
+	[[NSNotificationCenter defaultCenter] postNotificationName:UITextViewTextDidChangeNotification
+														object:self.textView];
+	if ([self.textView isKindOfClass:[UITextView class]])
+		[[NSNotificationCenter defaultCenter] postNotificationName:UITextViewTextDidChangeNotification object:self.textView];
+	else if ([self.textView isKindOfClass:[UITextField class]])
+		[[NSNotificationCenter defaultCenter] postNotificationName:UITextFieldTextDidChangeNotification object:self.textView];
+}
+
+- (IBAction)characterPressed:(id)sender {
+    
+    [[UIDevice currentDevice] playInputClick];
+	UIButton *button = (UIButton *)sender;
+	NSString *character = [NSString stringWithString:button.titleLabel.text];
+	
+    
+    if ([self.textView isKindOfClass:[UITextField class]]) {
+        int length = ((UITextField*)self.textView).text.length;
+        if (length == self.maxLength) return;
+    }
+    
+    [self.textView insertText:character];
+    
+	if ([self.textView isKindOfClass:[UITextView class]])
+		[[NSNotificationCenter defaultCenter] postNotificationName:UITextViewTextDidChangeNotification object:self.textView];
+	else if ([self.textView isKindOfClass:[UITextField class]])
+		[[NSNotificationCenter defaultCenter] postNotificationName:UITextFieldTextDidChangeNotification object:self.textView];
+}
+
+
+@end

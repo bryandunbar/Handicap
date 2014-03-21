@@ -1,0 +1,70 @@
+//
+//  GooglePlace.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 3/27/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "GooglePlace.h"
+#import "UQGooglePlacesAPI.h"
+
+@interface UQGooglePlacesAPI ()
+-(void)loadDetails;
+@end
+
+@implementation GooglePlace {
+    NSDictionary *_originalDictionary;
+}
+
+
+-(id)initWithAttributes:(NSDictionary *)attributes andSearchCenter:(CLLocationCoordinate2D)sc {
+    
+    if (self = [self init]) {
+        self.isAugmentedAttraction = YES;
+        _originalDictionary = attributes;
+        
+        self.ref = [attributes valueForKey:@"reference"];
+        self.name = [attributes valueForKey:@"name"];
+        self.address = [attributes valueForKey:@"vicinity"];
+        self.priceLevel = [[attributes valueForKey:@"price_level"] intValue];
+        
+        NSDictionary *photo = [[attributes valueForKey:@"photos"] lastObject];
+        self.photoRef = [photo valueForKey:@"photo_reference"];
+
+        
+        double lat = [[attributes valueForKeyPath:@"geometry.location.lat"] doubleValue];
+        double lng = [[attributes valueForKeyPath:@"geometry.location.lng"] doubleValue];
+        self.coordinate = CLLocationCoordinate2DMake(lat, lng);
+        
+        
+        if (sc.latitude != 0 && sc.longitude != 0) {
+            self.distanceAway = [self distanceFrom:sc];
+        }
+    }
+    return self;
+    
+
+}
+
+-(NSURL*)imageURL{
+    
+    if (!self.photoRef) {
+        return nil;
+    }
+    
+    NSString *photoUrl = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?photoreference=%@&maxheight=%i&maxwidth=%i&sensor=true&key=%@", self.photoRef, 50, 50, kGOOGLE_API_KEY];
+    return [NSURL URLWithString:photoUrl];
+
+}
+-(NSDictionary*)asDictionary {
+    return _originalDictionary;
+}
+-(BOOL)canQueue {
+    return NO;
+}
+-(BOOL)canQueue:(int)forWaitTime {
+    return NO;
+}
+
+@end

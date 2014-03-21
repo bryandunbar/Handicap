@@ -1,0 +1,20 @@
+//
+//  QueuedPatronActivity.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 8/4/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface QueuedPatronActivity : NSObject
+
+
+@property (nonatomic,strong) NSDate *activityTime;
+@property (nonatomic,strong) NSString *attractionName;
+@property (nonatomic,strong) NSString *activity; // Sat, Removed, Queued
+
+-(id)initWithAttributes:(NSDictionary*)attributes;
+
+@end

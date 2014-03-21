@@ -1,0 +1,22 @@
+//
+//  UQGooglePlacesAPI.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 3/27/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "SharedConstants.h"
+#import "GooglePlace.h"
+
+#define kGOOGLE_API_KEY @"AIzaSyCVQpuGC5vEt3mBHa-ySd1O-SaTpELSBCc"
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+@interface UQGooglePlacesAPI : NSObject
+
++(UQGooglePlacesAPI*)sharedPlacesAPI;
+-(void)queryGooglePlaces:(NSString *)googleType atSearchCenter:(CLLocationCoordinate2D)searchCenter withRadius:(int)radius completion:(void (^)(NSArray *places, NSError *error))block;
+
+-(void)getPlaceDetails:(GooglePlace *)place completion:(void (^)(void))block;
+@end

@@ -1,0 +1,247 @@
+//
+//  BDPanelView.m
+//
+//  Created by Bryan Dunbar on 9/20/11.
+//
+
+#import "BDPanelView.h"
+#import "BDLabel.h"
+#import <QuartzCore/QuartzCore.h>
+@interface BDPanelView()
+-(void)commonInit;
+-(void)viewPinched:(UIPinchGestureRecognizer*)sender;
+@property (nonatomic, readonly, strong) UINavigationBar *header;
+@end
+
+@implementation BDPanelView
+@synthesize headerBorderColor=_headerBorderColor, contentBorderColor=_conentBorderColor;
+@synthesize showHeader, title=_title;
+@synthesize headerHeight;
+
+-(id)init {
+    if (self = [super init]) {
+        [self commonInit];
+    }
+    return self;
+}
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+-(void)awakeFromNib {
+    [self commonInit];
+    [self setNeedsLayout];
+}
+
+-(void)addSubview:(UIView *)view {
+    if (view == _contentView || view == _header) {
+        [super addSubview:view];
+    } else {
+        [self.contentView addSubview:view];
+    }
+}
+-(void)addGlobalSubView:(UIView *)view {
+    [super addSubview:view];
+}
+-(void)commonInit {
+    self.showHeader = NO; // Default off, will turn to yes if a title is set
+    self.headerBorderColor = [UIColor blackColor];
+    self.contentBorderColor = [UIColor blackColor];
+    
+    originalFrame = CGRectZero;
+    
+//    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(viewPinched:)];
+    //[self addGestureRecognizer:pinchGestureRecognizer];
+}
+
+-(void)viewPinched:(UIPinchGestureRecognizer *)sender {
+        
+    
+    NSLog(@"View Pinched: %@, velocity = %f, scale = %f, state = %d", self.title, sender.velocity, sender.scale, sender.state);
+    // Get views parent
+    UIView *parent = self.superview;
+    
+    if (sender.velocity > 3 && !isMaximized) {
+        NSLog(@"Maximizing, originaFrame: %@", NSStringFromCGRect(self.frame));
+        originalFrame = self.frame;
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.25];
+        [parent bringSubviewToFront:self];
+        self.frame = parent.frame;
+        isMaximized = YES;
+    } else if (sender.velocity < 0 && isMaximized) {
+        NSLog(@"Minimizing");
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.25];
+        self.frame = originalFrame;
+        [UIView commitAnimations];
+        isMaximized  = NO;
+
+    }
+    
+}
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    
+    const CGRect bounds = self.bounds;
+    if (showHeader) {
+        self.header.hidden = NO;
+        
+        // Adjust header height
+        self.header.frame = CGRectMake(self.header.frame.origin.x, self.header.frame.origin.y, self.header.frame.size.width, MAX(headerHeight, kMinimumHeaderHeight));
+        const CGRect headerBounds = self.header.bounds;
+
+        // Adust the content view frame for the header border
+        self.contentView.frame = CGRectMake(bounds.origin.x, bounds.origin.y + headerBounds.size.height - 1.0, bounds.size.width, bounds.size.height - headerBounds.size.height + ((_headerBorderColor != nil) ? 1.0 : 0.0));
+        
+    } else {
+        // Content view takes up the whole size
+        //self.contentView.frame = self.frame;
+        self.header.hidden = YES;
+    }
+    
+    // Borders
+    self.header.layer.borderColor = [_headerBorderColor CGColor];
+    self.header.layer.borderWidth = _headerBorderColor != nil ? 1.0 : 0.0;
+    self.contentView.layer.borderColor = [_conentBorderColor CGColor];
+    self.contentView.layer.borderWidth = _conentBorderColor != nil ? 1.0 : 0.0;
+
+}
+
+-(UIView*)contentView {
+    if (!_contentView) {
+        _contentView = [[UIView alloc] initWithFrame:self.bounds];
+        _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        [self addSubview:_contentView];
+        [self layoutIfNeeded];
+    }
+    return _contentView;
+}
+
+
+-(UINavigationBar*)header {
+    if (!_header) {
+        const CGRect bounds = self.bounds;
+        _header = [[UINavigationBar alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, MAX(headerHeight, kMinimumHeaderHeight))];
+        _header.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        
+        
+        UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@""];
+        [_header pushNavigationItem:navigationItem animated:NO];
+        //_header.barStyle = UIBarStyleBlackOpaque;
+        _header.barStyle = UIBarStyleDefault;
+        _header.tintColor = [UIColor colorWithRed:113/255.0 green:120/255.0 blue:128/255.0 alpha:1.0];
+        [self addSubview:_header];
+        [self layoutIfNeeded];
+    }
+
+    return _header;
+}
+
+-(void)setHeaderBorderColor:(UIColor *)theHeaderBorderColor {
+    if (theHeaderBorderColor != _headerBorderColor) {
+        _headerBorderColor = theHeaderBorderColor;
+        [self setNeedsDisplay];
+    }
+}
+
+-(void)setContentBorderColor:(UIColor *)theContentBorderColor {
+    if (theContentBorderColor != _conentBorderColor) {
+        _conentBorderColor = theContentBorderColor;
+        
+        [self setNeedsDisplay];
+    }
+    
+}
+
+-(void)setTitle:(NSString *)theTitle {
+    if (theTitle != _title) {
+        _title = theTitle;
+        
+        showHeader = _title != nil;
+        self.header.topItem.title = _title;
+        [self setNeedsDisplay];
+    }
+}
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+#pragma mark - 
+-(void)setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem {
+    self.header.topItem.rightBarButtonItem = rightBarButtonItem;
+    [self setNeedsDisplay];
+}
+-(UIBarButtonItem*)rightBarButtonItem {
+    return self.header.topItem.rightBarButtonItem;
+}
+
+-(void)setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem {
+    self.header.topItem.leftBarButtonItem = leftBarButtonItem;
+    [self setNeedsDisplay];
+}
+-(UIBarButtonItem*)leftBarButtonItem {
+    return self.header.topItem.leftBarButtonItem;
+}
+-(void)setTintColor:(UIColor *)tintColor {
+    self.header.tintColor = tintColor;
+}
+-(UIColor*)tintColor {
+    return self.header.tintColor;
+}
+-(void)setBarStyle:(UIBarStyle)barStyle {
+    self.header.barStyle = barStyle;
+}
+-(UIBarStyle)barStyle {
+    return self.header.barStyle;
+}
+-(void)setHeaderHeight:(CGFloat)theHeaderHeight {
+    headerHeight = theHeaderHeight;
+    [self layoutIfNeeded];
+}
+
+#pragma mark - BarButton Helpers
+-(void)addLeftBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.header.topItem.leftBarButtonItems];
+    [array addObject:barButtonItem];
+    self.header.topItem.leftBarButtonItems = array;
+}
+-(void)insertLeftBarButtonItem:(UIBarButtonItem*)barButtonItem atIndex:(NSUInteger)index {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.header.topItem.leftBarButtonItems];
+    [array insertObject:barButtonItem atIndex:index];
+    self.header.topItem.leftBarButtonItems = array;
+}
+-(void)removeLeftBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    NSMutableArray *array = [self.header.topItem.leftBarButtonItems mutableCopy];
+    [array removeObject:barButtonItem];
+    self.header.topItem.leftBarButtonItems = array;
+    
+}
+-(void)addRightBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.header.topItem.rightBarButtonItems];
+    [array addObject:barButtonItem];
+    self.header.topItem.rightBarButtonItems = array;
+}
+-(void)insertRightBarButtonItem:(UIBarButtonItem*)barButtonItem atIndex:(NSUInteger)index {
+    NSMutableArray *array = [NSMutableArray arrayWithArray:self.header.topItem.rightBarButtonItems];
+    [array insertObject:barButtonItem atIndex:index];
+    self.header.topItem.rightBarButtonItems = array;
+}
+-(void)removeRightBarButtonItem:(UIBarButtonItem*)barButtonItem {
+    NSMutableArray *array = [self.header.topItem.rightBarButtonItems mutableCopy];
+    [array removeObject:barButtonItem];
+    self.header.topItem.rightBarButtonItems = array;
+}
+
+#pragma mark -
+
+@end

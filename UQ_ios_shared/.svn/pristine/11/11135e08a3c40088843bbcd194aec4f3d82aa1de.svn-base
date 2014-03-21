@@ -1,0 +1,12 @@
+#import <UIKit/UIKit.h>
+
+@interface UQNumberPad : UIView <UIInputViewAudioFeedback>
+
+@property (strong) id<UITextInput> textView;
+@property (nonatomic) int maxLength;
+-(IBAction)dismissPressed:(id)sender;
+-(IBAction)deletePressed:(id)sender;
+-(IBAction)characterPressed:(id)sender;
+
++(UQNumberPad*)numberPadForTextView:(id<UITextInput>)textView;
+@end

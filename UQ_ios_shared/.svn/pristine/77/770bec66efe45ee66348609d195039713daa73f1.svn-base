@@ -1,0 +1,34 @@
+//
+//  NSString+SHA1.m
+//
+//  Created by Bryan Dunbar on 3/26/12.
+//
+
+#import "NSString+SHA1.h"
+#import <CommonCrypto/CommonDigest.h>
+
+
+@implementation NSString (SHA1)
+
+- (NSString*) sha1 {
+    // code snippet from http://stackoverflow.com/a/1084497/72176
+    
+    NSString* hashkey = self;
+    
+    const char* s = [hashkey cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData* keyData = [NSData dataWithBytes:s length:strlen(s)];
+    
+    // This is the destination
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
+
+    // This one function does an unkeyed SHA1 hash of your hash data
+    CC_SHA1(keyData.bytes, keyData.length, digest);
+    
+    // Now convert to NSData structure to make it usable again
+    NSData* out = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
+    
+    NSString* hash = [out description];
+    return hash;
+}
+
+@end

@@ -1,0 +1,27 @@
+//
+//  UQManagedObject.h
+//  uHost
+//
+//  Created by Bryan Dunbar on 12/30/12.
+//  Copyright (c) 2012 iPwn Technologies. All rights reserved.
+//
+
+#import <CoreData/CoreData.h>
+
+@interface UQManagedObject : NSManagedObject {
+    BOOL traversed;
+}
+
+@property (nonatomic, assign) BOOL traversed;
+
+-(NSDictionary*)toDictionary;
+-(NSDictionary*)toDictionaryTraversingRelationships:(BOOL)traverseRelationships;
+-(void)populateFromDictionary:(NSDictionary*)dict;
++(UQManagedObject*)createManagedObjectFromDictionary:(NSDictionary*)dict
+                                           inContext:(NSManagedObjectContext*)context;
+
++(UQManagedObject*)createManagedObjectFromDictionary:(NSDictionary*)dict forEntity:(NSString*)entityName
+                                                   inContext:(NSManagedObjectContext*)context;
+
+-(void)objectWasSynced;
+@end

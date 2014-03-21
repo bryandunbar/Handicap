@@ -1,0 +1,18 @@
+//
+//  UQJSONRequestOperation.h
+//  UQ
+//
+//  Created by Bryan Dunbar on 12/1/12.
+//  Copyright (c) 2012 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "AFJSONRequestOperation.h"
+
+#define kStatusKey @"status"
+#define kResultKey @"result"
+#define kErrorKey  @"error"
+#define kErrorNumber @"errorNumber"
+
+@interface UQJSONRequestOperation : AFJSONRequestOperation
+
+@end

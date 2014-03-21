@@ -1,0 +1,53 @@
+//
+//  AttractionSchedule.m
+//  uHost
+//
+//  Created by Bryan Dunbar on 3/6/13.
+//  Copyright (c) 2013 iPwn Technologies, LLC. All rights reserved.
+//
+
+#import "AttractionSchedule.h"
+#import "NSDate+Additions.h"
+
+@implementation AttractionSchedule
+@synthesize attractionID=_attractionID;
+@synthesize attractionScheduleID=_attractionScheduleID;
+@synthesize openTime=_openTime;
+@synthesize closeTime=_closeTime;
+@synthesize dayOfWeek=_dayOfWeek;
+@synthesize isOpen=_isOpen;
+
+-(id)initWithAttributes:(NSDictionary *)attributes {
+
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    _attractionID = [[attributes valueForKeyPath:@"attractionID"] integerValue];
+    _attractionScheduleID = [[attributes valueForKeyPath:@"attractionScheduleID"] integerValue];
+    _dayOfWeek = [[attributes valueForKeyPath:@"dayOfWeek"] integerValue];
+    _isOpen = [[attributes valueForKeyPath:@"isOpen"] boolValue];
+
+     NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+    _openTime = [NSDate dateFromString:[attributes valueForKeyPath:@"openTime"] withFormat:kAttractionScheduleWireTireFormat andTimezone:utc];
+    _closeTime = [NSDate dateFromString:[attributes valueForKeyPath:@"closeTime"] withFormat:kAttractionScheduleWireTireFormat andTimezone:utc];
+    
+    return self;
+}
+
+-(NSDictionary*)asDictionary {
+    
+    NSTimeZone *utc = [NSTimeZone timeZoneWithName:@"UTC"];
+
+    return @{
+             @"attractionID":[NSNumber numberWithInt:self.attractionID],
+             @"attractionScheduleID":[NSNumber numberWithInt:self.attractionScheduleID],
+             @"dayOfWeek":[NSNumber numberWithInt:self.dayOfWeek],
+             @"isOpen":[NSNumber numberWithBool:self.isOpen],
+             @"openTime":[self.openTime formattedStringUsingFormat:kAttractionScheduleWireTireFormat inTimeZone:utc],
+             @"closeTime":[self.closeTime formattedStringUsingFormat:kAttractionScheduleWireTireFormat inTimeZone:utc]
+             };
+    
+}
+@end

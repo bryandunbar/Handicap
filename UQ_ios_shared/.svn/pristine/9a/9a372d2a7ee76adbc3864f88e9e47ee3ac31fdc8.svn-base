@@ -1,0 +1,25 @@
+//
+//  UQHudView.h
+
+#import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
+
+@interface UQHudView : UIView {
+	MBProgressHUD			*HUD;
+}
+
+@property(nonatomic,retain) MBProgressHUD *HUD;
+
++(UQHudView *) sharedHUD;
+
+-(void) show;
+-(void) show:(BOOL)animated;
+-(void) show:(NSString *)message animated:(BOOL)animated;
+-(void) show:(NSString *)message animated:(BOOL)animated inView:(UIView *)vw;
+
+-(void) hide;
+-(void) hide:(BOOL)animated;
+
+-(void) showHUD:(NSString*)message forTime:(NSTimeInterval)seconds;
+-(void) showHUD:(NSString*)message forTime:(NSTimeInterval)seconds inView:(UIView *)view;
+@end

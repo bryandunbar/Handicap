@@ -1,0 +1,112 @@
+//
+//  UQGooglePlacesAPI.m
+//  UQ
+//
+//  Created by Bryan Dunbar on 3/27/13.
+//  Copyright (c) 2013 iPwn Technologies LLC. All rights reserved.
+//
+
+#import "UQGooglePlacesAPI.h"
+#import "GooglePlace.h"
+
+@implementation UQGooglePlacesAPI
+
+
++(UQGooglePlacesAPI*)sharedPlacesAPI {
+    static UQGooglePlacesAPI *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedClient = [[UQGooglePlacesAPI alloc] init];
+    });
+    
+    return _sharedClient;
+}
+-(void)queryGooglePlaces:(NSString *)googleType atSearchCenter:(CLLocationCoordinate2D)searchCenter withRadius:(int)radius completion:(void (^)(NSArray *, NSError *))block {
+    
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", searchCenter.latitude, searchCenter.longitude, [NSString stringWithFormat:@"%i", MIN((int)(radius * MILES_TO_METERS), 50000)], googleType, kGOOGLE_API_KEY];
+    
+    //Formulate the string as URL object.
+    NSURL *googleRequestURL=[NSURL URLWithString:url];
+    
+    // To the background
+    dispatch_async(kBgQueue, ^{
+
+        // Fetch
+        NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
+        if (!data) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(nil, nil);
+            });
+        }
+        
+        
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              
+                              options:kNilOptions
+                              error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                block(nil, error);
+            } else {
+                NSArray* places = [json objectForKey:@"results"];
+                
+                
+                // Convert to google places and sort by distance away
+                NSMutableArray *googlePlaces = [NSMutableArray arrayWithCapacity:places.count];
+                for (NSDictionary *attrs in places) {
+                    GooglePlace *googlePlace = [[GooglePlace alloc] initWithAttributes:attrs andSearchCenter:searchCenter];
+                    [googlePlaces addObject:googlePlace];
+                }
+                
+                places = [googlePlaces sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distanceAway" ascending:YES]]];
+                NSLog(@"Google Data: %@", places);
+
+                block(places, nil);
+            }
+        });
+
+    });
+}
+
+-(void)getPlaceDetails:(GooglePlace *)place completion:(void (^)(void))block {
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=true&key=%@", place.ref, kGOOGLE_API_KEY];
+    
+    //Formulate the string as URL object.
+    NSURL *googleRequestURL=[NSURL URLWithString:url];
+    
+    // To the background
+    dispatch_async(kBgQueue, ^{
+        
+        // Fetch
+        NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
+        
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              
+                              options:kNilOptions
+                              error:&error];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                NSDictionary* placeDetails = [json objectForKey:@"result"];
+                
+                place.phone = [placeDetails valueForKey:@"formatted_phone_number"];
+                place.reviews = [placeDetails valueForKey:@"reviews"];
+                place.avgRating = [[placeDetails valueForKey:@"rating"] doubleValue];
+                place.url = [placeDetails valueForKey:@"url"];
+                block();
+            }
+        });
+        
+    });
+
+}
+
+
+@end
