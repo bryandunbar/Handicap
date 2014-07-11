@@ -60,7 +60,7 @@
         NSNumber *diff = (NSNumber*)diffDict[@"diff"];
         sum += [diff doubleValue];
         
-        // This socre was used
+        // This score was used
         [usedScoreCollector addObject:diffDict[@"score"]];
     }];
     

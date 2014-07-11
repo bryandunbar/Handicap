@@ -9,12 +9,14 @@
 #import "GHHandicapListViewController.h"
 #import "GHHandicapCalculator.h"
 #import "GHPrintFormmater.h"
+#import "GHWebViewController.h"
+
 @interface GHHandicapListViewController () <UIWebViewDelegate, UIActionSheetDelegate> {
     NSArray *data;
     GHHandicapCalculator *calculator;
     
-    UIPrintFormatter *cardPrintFormatter;
-    UIPrintFormatter *listPrintFormatter;    
+    UIMarkupTextPrintFormatter *cardPrintFormatter;
+    UIMarkupTextPrintFormatter *listPrintFormatter;    
 }
 
 @property (nonatomic,strong) UIBarButtonItem *printButton;
@@ -81,8 +83,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Ok to show the print button now
-                UIBarButtonItem *barButton = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Print" style:UIBarButtonItemStyleBordered target:self action:@selector(printButtonTapped:)];
+                UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(printButtonTapped:)];
                 [self.navigationItem setRightBarButtonItem:barButton animated:NO];
                 self.printButton = barButton;
             });
@@ -144,12 +145,19 @@
 #pragma mark - Printing
 -(void)printButtonTapped:(id)sender {
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Print" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Trend List", @"Handicap Cards", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Actions" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Print", @"View Handicap Cards", nil];
     [actionSheet showFromBarButtonItem:self.printButton animated:YES];
     
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    [self print:buttonIndex];
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        
+        if (buttonIndex == GHHandicapListViewPrintCards) {
+            [self performSegueWithIdentifier:@"getHandicapCardsSegue" sender:self];
+        } else {
+            [self print:buttonIndex];
+        }
+    }
 }
 -(void)print:(GHHandicapListViewPrintOptions)printOption {
     UIPrintInteractionController *pc = [UIPrintInteractionController
@@ -179,4 +187,10 @@
     
     [pc presentAnimated:YES completionHandler:completionHandler];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    GHWebViewController *viewController = (GHWebViewController*)segue.destinationViewController;
+    viewController.printFormmatter = cardPrintFormatter;
+}
+
 @end

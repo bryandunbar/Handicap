@@ -102,7 +102,7 @@
     NSString *handicapIndex = [self indexValueFromDict:printDict];
     NSString *trend = [self trendValueFromDict:printDict];
     NSDate *date = [NSDate date];
-    NSArray *scores = [player.scores allObjects];
+    NSArray *scores = [player.scores sortedArrayUsingDescriptors:[GHScore defaultSortDescriptors]];
 
     
     NSMutableString *html = [NSMutableString stringWithString:@"<table style='border:1px solid black; width='100%'>"];

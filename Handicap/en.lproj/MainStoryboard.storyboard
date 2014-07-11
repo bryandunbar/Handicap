@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -247,6 +248,7 @@
                     <navigationItem key="navigationItem" title="Handicaps" id="2Lu-r8-B5L"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="kYu-HP-Qpa" id="lf9-eq-YKF"/>
+                        <segue destination="l7i-2z-zx4" kind="push" identifier="getHandicapCardsSegue" id="Lcq-Ok-f3t"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvB-nl-5vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -259,7 +261,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2060" y="368"/>
+            <point key="canvasLocation" x="2168" y="371"/>
         </scene>
         <!--Post Scores View Controller - Post Scores-->
         <scene sceneID="q0o-5o-kol">
@@ -395,6 +397,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmU-OS-YTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1693" y="1064"/>
+        </scene>
+        <!--Web View Controller - Handicap Cards-->
+        <scene sceneID="pLg-Lx-t9C">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="l7i-2z-zx4" customClass="GHWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jsx-I7-1kW"/>
+                        <viewControllerLayoutGuide type="bottom" id="uGf-li-jn9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qfd-ry-oWC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-d7-1In">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="H0x-d7-1In" secondAttribute="trailing" id="B7Q-Nc-vPR"/>
+                            <constraint firstItem="H0x-d7-1In" firstAttribute="top" secondItem="jsx-I7-1kW" secondAttribute="bottom" id="OsU-09-3QY"/>
+                            <constraint firstItem="uGf-li-jn9" firstAttribute="top" secondItem="H0x-d7-1In" secondAttribute="bottom" constant="-49" id="Xfi-ai-4As"/>
+                            <constraint firstItem="H0x-d7-1In" firstAttribute="leading" secondItem="qfd-ry-oWC" secondAttribute="leading" id="tjf-y0-PiV"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Handicap Cards" id="7Gk-90-R5U">
+                        <barButtonItem key="rightBarButtonItem" title="Print" id="bqW-QT-ABD">
+                            <connections>
+                                <action selector="printTapped:" destination="l7i-2z-zx4" id="Mbq-DY-RY9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="H0x-d7-1In" id="Ypx-ey-7GX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hUh-M0-z6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2595" y="363"/>
         </scene>
         <!--Players View Controller - Players-->
         <scene sceneID="hZn-EN-Ok2">
