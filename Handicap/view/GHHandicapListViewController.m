@@ -54,12 +54,28 @@
     int count = 0;
     for (GHPlayer *player in players) {
         
-        NSSet *scores = self.useScoresFromSelectedLeagueOnly ?
-        [player.scores filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"league == %@", self.league]] : player.scores;
+        
+        // Build the predicate
+        NSPredicate *predicate = nil;
+        if (self.useScoresFromSelectedLeagueOnly) {
+            predicate = [NSPredicate predicateWithFormat:@"league == %@", self.league];
+        }
+        
+        if (self.useScoresFromSelectedCourseOnly) {
+            NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", self.course];
+            if (!predicate) {
+                predicate = subPredicate;
+            } else {
+                predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, subPredicate]];
+            }
+        }
+
+        NSSet *scores = predicate != nil ?
+            [player.scores filteredSetUsingPredicate:predicate] : player.scores;
         
         NSArray *usedScores = [NSArray array];
         double index = [calculator handicapIndexForScores:[scores allObjects] usedScores:&usedScores];
-        int trend = [calculator courseHandicapForHandicap:index forCourse:self.course];
+        NSUInteger trend = [calculator courseHandicapForHandicap:index forCourse:self.course];
         
         NSDictionary *dict = @{@"player":player, @"index":@(index), @"trend":@(trend), @"usedScores":usedScores};
         
@@ -78,7 +94,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
        
             GHPrintFormmater *pf = [[GHPrintFormmater alloc] init];
-            cardPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlCardsForData:data league:self.league andCourse:self.course]];
+            cardPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlCardsForData:data league:self.league andCourse:self.course showThisLeageOnly:self.useScoresFromSelectedLeagueOnly showThisCourseOnly:self.useScoresFromSelectedCourseOnly]];
             listPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlRankingForData:data league:self.league andCourse:self.course]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -122,11 +138,11 @@
     cell.textLabel.text = [player description];
     
     if (self.course) { // Showing trends
-        int trend = [dict[@"trend"] intValue];
+        NSUInteger trend = [dict[@"trend"] unsignedIntegerValue];
         if (trend == NSNotFound)
             cell.detailTextLabel.text = @"NH";
         else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", trend];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", trend];
     } else {
         double index = [dict[@"index"] doubleValue];
         if (index == NSNotFound)

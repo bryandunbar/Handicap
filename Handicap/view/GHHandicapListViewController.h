@@ -21,5 +21,5 @@ typedef enum GHHandicapListViewPrintOptions {
 @property (nonatomic,strong) GHCourse *course; /** If nil, show indices **/
 @property (nonatomic,strong) GHLeague *league;
 @property (nonatomic) BOOL useScoresFromSelectedLeagueOnly;
-
+@property (nonatomic) BOOL useScoresFromSelectedCourseOnly;
 @end

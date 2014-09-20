@@ -128,8 +128,37 @@
                                             <constraint firstItem="DO4-qw-wVH" firstAttribute="leading" secondItem="w2G-C4-JJT" secondAttribute="leading" constant="30" id="sW1-zO-Hen"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="wcz-W4-3VV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="Osx-kU-dus">
                                         <rect key="frame" x="0.0" y="187" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Osx-kU-dus" id="Lzg-a8-gAS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uwp-Rc-thP">
+                                                    <rect key="frame" x="253" y="8" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Scores from this course only" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhx-Fc-lmK">
+                                                    <rect key="frame" x="26" y="13" width="191" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8bm-Xe-NyR"/>
+                                                        <constraint firstAttribute="width" constant="191" id="R7k-uu-lcX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Uwp-Rc-thP" secondAttribute="trailing" constant="18" id="DO0-0F-m3e"/>
+                                            <constraint firstItem="Xhx-Fc-lmK" firstAttribute="leading" secondItem="Osx-kU-dus" secondAttribute="leading" constant="26" id="bB1-pO-Db3"/>
+                                            <constraint firstItem="Uwp-Rc-thP" firstAttribute="top" secondItem="Osx-kU-dus" secondAttribute="top" constant="8" id="s5b-i9-YD6"/>
+                                            <constraint firstItem="Xhx-Fc-lmK" firstAttribute="centerY" secondItem="Uwp-Rc-thP" secondAttribute="centerY" id="y1Y-he-4kd"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="wcz-W4-3VV">
+                                        <rect key="frame" x="0.0" y="231" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcz-W4-3VV" id="Gd2-Al-eE8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -162,7 +191,7 @@
                             <tableViewSection id="xgT-ak-oi5">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHButtonCell" rowHeight="44" id="myU-8T-QhD">
-                                        <rect key="frame" x="0.0" y="251" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="295" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myU-8T-QhD" id="Llw-T4-wKQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -201,6 +230,7 @@
                     <connections>
                         <outlet property="coursePicker" destination="DO4-qw-wVH" id="0n6-wb-7Uv"/>
                         <outlet property="leaguePicker" destination="dPk-bH-QbD" id="712-4s-reI"/>
+                        <outlet property="scoresFromThisCourseSwitch" destination="Uwp-Rc-thP" id="Mjh-Xm-RkJ"/>
                         <outlet property="scoresSwitch" destination="3ou-kM-tdh" id="RcU-kF-Xhs"/>
                     </connections>
                 </tableViewController>

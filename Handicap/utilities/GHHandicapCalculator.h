@@ -11,6 +11,6 @@
 @interface GHHandicapCalculator : NSObject
 
 -(double)handicapIndexForScores:(NSArray*)scores usedScores:(NSArray**)usedScoreArrayReference;
--(int)courseHandicapForHandicap:(double)handicapIndex forCourse:(GHCourse*)course;
+-(NSUInteger)courseHandicapForHandicap:(double)handicapIndex forCourse:(GHCourse*)course;
 
 @end

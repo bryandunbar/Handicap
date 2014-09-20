@@ -64,7 +64,7 @@
 #define ROWS_PER_PAGE 4
 #define SCORES_PER_ROW 5
 
--(NSString*)htmlCardsForData:(NSArray *)array league:(GHLeague *)league andCourse:(GHCourse *)course {
+-(NSString*)htmlCardsForData:(NSArray *)array league:(GHLeague *)league andCourse:(GHCourse *)course showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
     NSMutableString *html = [NSMutableString stringWithString:@"<html><body>"];
 
     
@@ -84,7 +84,7 @@
         
         [html appendString:@"<td style='width:50%'>"];
         NSDictionary *dict = array[i];
-        [html appendString:[self htmlCardForPlayer:dict league:league andCourse:course]];
+        [html appendString:[self htmlCardForPlayer:dict league:league andCourse:course showThisLeageOnly:showThisCourseOnly showThisCourseOnly:showThisCourseOnly]];
         [html appendString:@"</td>"];
     }
     
@@ -95,14 +95,35 @@
 }
 
 
--(NSString*)htmlCardForPlayer:(NSDictionary *)printDict league:(GHLeague *)league andCourse:(GHCourse *)course {
+-(NSString*)htmlCardForPlayer:(NSDictionary *)printDict league:(GHLeague *)league andCourse:(GHCourse *)course showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
     
     GHPlayer *player = printDict[@"player"];
     NSArray *usedScores = printDict[@"usedScores"];
     NSString *handicapIndex = [self indexValueFromDict:printDict];
     NSString *trend = [self trendValueFromDict:printDict];
     NSDate *date = [NSDate date];
-    NSArray *scores = [player.scores sortedArrayUsingDescriptors:[GHScore defaultSortDescriptors]];
+    
+    
+    // Build the predicate
+    NSPredicate *predicate = nil;
+    if (showThisLeagueOnly) {
+        predicate = [NSPredicate predicateWithFormat:@"league == %@", league];
+    }
+    
+    if (showThisCourseOnly) {
+        NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", course];
+        if (!predicate) {
+            predicate = subPredicate;
+        } else {
+            predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, subPredicate]];
+        }
+    }
+    
+    NSSet *scoreSet = predicate != nil ?
+    [player.scores filteredSetUsingPredicate:predicate] : player.scores;
+    
+    
+    NSArray *scores = [[scoreSet allObjects] sortedArrayUsingDescriptors:[GHScore defaultSortDescriptors]];
 
     
     NSMutableString *html = [NSMutableString stringWithString:@"<table style='border:1px solid black; width='100%'>"];
@@ -160,11 +181,11 @@
 }
 
 -(NSString*)trendValueFromDict:(NSDictionary*)printDict {
-    int trend = [printDict[@"trend"] intValue];
+    NSUInteger trend = [printDict[@"trend"] unsignedIntegerValue];
     if (trend == NSNotFound)
         return @"NH";
     else
-        return [NSString stringWithFormat:@"%d", trend];
+        return [NSString stringWithFormat:@"%lu", (unsigned long)trend];
 }
 
 -(NSString*)indexValueFromDict:(NSDictionary*)printDict {

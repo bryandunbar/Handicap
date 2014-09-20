@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet BDPickerField *leaguePicker;
 @property (weak, nonatomic) IBOutlet BDPickerField *coursePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *scoresSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *scoresFromThisCourseSwitch;
 
 @property (nonatomic,strong) GHLeague *selectedLeague;
 @property (nonatomic,strong) GHCourse *selectedCourse;
@@ -43,6 +44,8 @@
     self.leaguePicker.picker.delegate = self;
     self.leaguePicker.picker.dataSource = self;
     self.leaguePicker.picker.tag = LEAGUE_TAG;
+    self.scoresSwitch.on = YES;
+    self.scoresFromThisCourseSwitch.on = YES;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
@@ -168,6 +171,7 @@
         controller.league = self.selectedLeague;
         controller.course = self.selectedCourse;
         controller.useScoresFromSelectedLeagueOnly = self.scoresSwitch.on;
+        controller.useScoresFromSelectedCourseOnly = self.scoresFromThisCourseSwitch.on;
     }
     
 }
