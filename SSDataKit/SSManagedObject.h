@@ -44,6 +44,8 @@ Changes saved here are automatically reflected in the `privateQueueContext`.
 + (BOOL)hasMainContext DEPRECATED_ATTRIBUTE;
 
 
++(NSString*)cloudStoreName;
+
 #pragma mark - Configuring the Persistent Store
 
 + (NSPersistentStoreCoordinator *)persistentStoreCoordinator;

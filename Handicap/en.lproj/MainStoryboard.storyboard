@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
-        <!--Main Menu View Controller - Golf Handicapper-->
+        <!--Golf Handicapper-->
         <scene sceneID="zj9-Xj-mfe">
             <objects>
                 <viewController id="P3A-CA-fb0" customClass="GHMainMenuViewController" sceneMemberID="viewController">
@@ -71,14 +71,14 @@
             </objects>
             <point key="canvasLocation" x="1205" y="607"/>
         </scene>
-        <!--Handicap Selection View Controller - Get Handicaps-->
+        <!--Get Handicaps-->
         <scene sceneID="5BI-Xi-dhR">
             <objects>
                 <tableViewController id="C4c-wZ-59Q" customClass="GHHandicapSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="CEV-rh-QK8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="5Lx-jZ-qRv">
                                 <cells>
@@ -145,7 +145,7 @@
                                                         <constraint firstAttribute="width" constant="191" id="R7k-uu-lcX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -174,7 +174,7 @@
                                                         <constraint firstAttribute="width" constant="191" id="oUe-1K-c9a"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -197,7 +197,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4z-fQ-Slm">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4z-fQ-Slm">
                                                     <rect key="frame" x="10" y="0.0" width="300" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="gds-SW-yQz"/>
@@ -238,7 +238,7 @@
             </objects>
             <point key="canvasLocation" x="1703" y="371"/>
         </scene>
-        <!--Handicap List View Controller - Handicaps-->
+        <!--Handicaps-->
         <scene sceneID="SsR-5A-ESj">
             <objects>
                 <tableViewController id="Qan-L1-qk7" customClass="GHHandicapListViewController" sceneMemberID="viewController">
@@ -257,7 +257,7 @@
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YCb-O8-cFw">
                                             <rect key="frame" x="15" y="11" width="34" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PB7-LA-i60">
@@ -293,14 +293,14 @@
             </objects>
             <point key="canvasLocation" x="2168" y="371"/>
         </scene>
-        <!--Post Scores View Controller - Post Scores-->
+        <!--Post Scores-->
         <scene sceneID="q0o-5o-kol">
             <objects>
                 <tableViewController id="ANW-Dv-DXR" customClass="GHPostScoresViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="He8-p2-O1R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHPostScoreLeagueCell" rowHeight="44" id="bnl-cC-VMv">
                                 <rect key="frame" x="0.0" y="119" width="320" height="44"/>
@@ -384,7 +384,7 @@
                                                 <constraint firstAttribute="width" constant="200" id="aEt-vq-Psa"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Score" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08n-Nh-3fF">
@@ -428,7 +428,7 @@
             </objects>
             <point key="canvasLocation" x="1693" y="1064"/>
         </scene>
-        <!--Web View Controller - Handicap Cards-->
+        <!--Handicap Cards-->
         <scene sceneID="pLg-Lx-t9C">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="l7i-2z-zx4" customClass="GHWebViewController" sceneMemberID="viewController">
@@ -442,7 +442,6 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-d7-1In">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
@@ -470,7 +469,7 @@
             </objects>
             <point key="canvasLocation" x="2595" y="363"/>
         </scene>
-        <!--Players View Controller - Players-->
+        <!--Players-->
         <scene sceneID="hZn-EN-Ok2">
             <objects>
                 <viewController id="fqI-wM-Ygo" customClass="GHPlayersViewController" sceneMemberID="viewController">
@@ -489,7 +488,7 @@
             </objects>
             <point key="canvasLocation" x="2192" y="-1767"/>
         </scene>
-        <!--Leagues View Controller - Leagues-->
+        <!--Leagues-->
         <scene sceneID="fbk-Hn-NiW">
             <objects>
                 <viewController id="4P2-Z1-my0" customClass="GHLeaguesViewController" sceneMemberID="viewController">
@@ -508,7 +507,7 @@
             </objects>
             <point key="canvasLocation" x="2192" y="-2652"/>
         </scene>
-        <!--Courses View Controller - Courses-->
+        <!--Courses-->
         <scene sceneID="ch8-3N-M5B">
             <objects>
                 <viewController id="1RH-To-4pi" customClass="GHCoursesViewController" sceneMemberID="viewController">
@@ -527,14 +526,14 @@
             </objects>
             <point key="canvasLocation" x="2168" y="-370"/>
         </scene>
-        <!--Add Or Edit Course View Controller - New Course-->
+        <!--New Course-->
         <scene sceneID="3DL-Ld-rt3">
             <objects>
                 <tableViewController id="WSh-8w-l6z" customClass="GHAddOrEditCourseViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Hbe-XT-0at">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="6zu-qd-KMZ">
                                 <cells>
@@ -723,14 +722,14 @@
             </objects>
             <point key="canvasLocation" x="2590" y="-370"/>
         </scene>
-        <!--Add Or Edit Player View Controller - New Player-->
+        <!--New Player-->
         <scene sceneID="tWR-rU-lqO">
             <objects>
                 <tableViewController id="lmG-Rm-YF2" customClass="GHAddOrEditPlayerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="A0B-Fx-epc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="znu-gf-pHv">
                                 <cells>
@@ -803,7 +802,7 @@
                                                         <constraint firstAttribute="width" constant="202" id="Ybh-mg-tbD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -846,7 +845,7 @@
             </objects>
             <point key="canvasLocation" x="2992" y="-1773"/>
         </scene>
-        <!--Score List View Controller - Scores-->
+        <!--Scores-->
         <scene sceneID="K6r-JS-KjB">
             <objects>
                 <tableViewController id="vkp-BP-t62" customClass="GHScoreListViewController" sceneMemberID="viewController">
@@ -868,7 +867,7 @@
                                                 <constraint firstAttribute="width" constant="239" id="7fS-LW-b9f"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="85" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gls-Jo-tjY">
@@ -938,14 +937,14 @@
             </objects>
             <point key="canvasLocation" x="2614" y="-1773"/>
         </scene>
-        <!--Add Or Edit League View Controller - New League-->
+        <!--New League-->
         <scene sceneID="INU-9X-zen">
             <objects>
                 <tableViewController id="qih-fs-mGp" customClass="GHAddOrEditLeagueViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AWE-ss-ZhS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="J0F-65-czv">
                                 <cells>
@@ -988,7 +987,7 @@
                                                         <constraint firstAttribute="width" constant="202" id="rRa-8K-1Hk"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -1030,7 +1029,7 @@
             </objects>
             <point key="canvasLocation" x="3046" y="-2652"/>
         </scene>
-        <!--Select Players View Controller - Select Players-->
+        <!--Select Players-->
         <scene sceneID="Kbb-ma-jrg">
             <objects>
                 <viewController id="HTo-vD-8P9" customClass="GHSelectPlayersViewController" sceneMemberID="viewController">
@@ -1058,14 +1057,14 @@
             </objects>
             <point key="canvasLocation" x="2608" y="-2652"/>
         </scene>
-        <!--Table View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="egv-GN-3wU">
             <objects>
                 <tableViewController id="x1D-Un-E8m" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="sOC-7l-fhE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="Flu-EH-M3D">
                                 <cells>
@@ -1082,7 +1081,7 @@
                                                         <constraint firstAttribute="width" constant="233" id="Slk-hG-PTR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -1108,7 +1107,7 @@
                                                         <constraint firstAttribute="width" constant="233" id="Xtt-UC-Ip5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -1134,7 +1133,7 @@
                                                         <constraint firstAttribute="width" constant="233" id="6R3-gr-hx6"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -1161,7 +1160,7 @@
             </objects>
             <point key="canvasLocation" x="1107" y="-615"/>
         </scene>
-        <!--Navigation Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="PX4-lh-dQV">
             <objects>
                 <navigationController id="T64-aD-JBb" sceneMemberID="viewController">
@@ -1180,7 +1179,7 @@
             </objects>
             <point key="canvasLocation" x="581" y="-615"/>
         </scene>
-        <!--Navigation Controller - Home-->
+        <!--Home-->
         <scene sceneID="CJc-US-sfq">
             <objects>
                 <navigationController id="tN5-Fw-q22" sceneMemberID="viewController">
@@ -1199,14 +1198,14 @@
             </objects>
             <point key="canvasLocation" x="679" y="607"/>
         </scene>
-        <!--Edit Score View Controller - Edit Score-->
+        <!--Edit Score-->
         <scene sceneID="cqa-y5-EoF">
             <objects>
                 <tableViewController id="zaQ-Rq-0Ed" customClass="GHEditScoreViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OGP-um-ZKp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="TjX-0w-GX7">
                                 <cells>

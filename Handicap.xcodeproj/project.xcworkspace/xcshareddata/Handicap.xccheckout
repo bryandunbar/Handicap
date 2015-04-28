@@ -10,31 +10,48 @@
 	<string>Handicap</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3E6CCE6F-5000-4A57-A0FB-0A0023FA32AF</key>
+		<key>27DBAB9B824BEE7936F626E7E0184D59B29D62D7</key>
 		<string>https://github.com/bryandunbar/Handicap.git</string>
+		<key>f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924</key>
+		<string>https://subversion.assembla.com/svn/uqueue/trunk/UQ_ios_shared</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Handicap.xcodeproj/project.xcworkspace</string>
+	<string>Handicap.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3E6CCE6F-5000-4A57-A0FB-0A0023FA32AF</key>
+		<key>27DBAB9B824BEE7936F626E7E0184D59B29D62D7</key>
 		<string>../..</string>
+		<key>f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924</key>
+		<string>../..UQ_ios_shared</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924</key>
+		<string>https://subversion.assembla.com/svn/uqueue</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/bryandunbar/Handicap.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3E6CCE6F-5000-4A57-A0FB-0A0023FA32AF</string>
+	<string>27DBAB9B824BEE7936F626E7E0184D59B29D62D7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3E6CCE6F-5000-4A57-A0FB-0A0023FA32AF</string>
+			<string>27DBAB9B824BEE7936F626E7E0184D59B29D62D7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Handicap</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HandicapUQ_ios_shared</string>
 		</dict>
 	</array>
 </dict>

@@ -113,7 +113,7 @@ static NSString *const kURIRepresentationKey = @"URIRepresentation";
 		[self setPersistentStoreOptions:[NSDictionary dictionaryWithObjectsAndKeys:
 										 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
 										 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-										 nil]];
+                                         nil]];
 	}
 	return __persistentStoreOptions;
 }
