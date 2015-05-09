@@ -821,7 +821,7 @@
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a1bd82c-e4b1-47bc-8b4a-c4c61ce86c91";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -831,8 +831,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Covington Fitness, LLC (8D5DR6HDEC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Covington Fitness, LLC (8D5DR6HDEC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -842,7 +842,7 @@
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a1bd82c-e4b1-47bc-8b4a-c4c61ce86c91";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
