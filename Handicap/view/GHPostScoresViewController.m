@@ -14,6 +14,7 @@
 #import "GHPlayerScoreCell.h"
 #import "UQDateField2.h"
 #import "BDPickerField.h"
+#import "GHAppDelegate.h"
 
 #define LEAGUE_TAG      1000
 #define COURSE_TAG      1001
@@ -281,10 +282,14 @@
             // Update the player as well
             [player addScoresObject:score];
             [player calculateIndex]; // Calls save for us
+            
         }
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+    GHAppDelegate *app = (GHAppDelegate*)[UIApplication sharedApplication].delegate;
+    [app.dbBackup backupDatabaseWithCompletion:nil];
     
     
 }

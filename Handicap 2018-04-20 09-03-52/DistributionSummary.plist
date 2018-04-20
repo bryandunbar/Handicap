@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Handicap.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>723C2174E177F2877E46B0CD278B627C5563C3F9</string>
+				<key>dateExpires</key>
+				<string>4/20/19</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>8D5DR6HDEC.com.ipwntech.Golf-Handicapper</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>8D5DR6HDEC</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>8D5DR6HDEC.com.ipwntech.Golf-Handicapper</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>Handicap.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>b255e092-27c1-49b1-8bbb-7960f3b13881</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.ipwntech.Golf-Handicapper</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>8D5DR6HDEC</string>
+				<key>name</key>
+				<string>Covington Fitness, LLC</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

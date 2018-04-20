@@ -44,8 +44,8 @@
     self.leaguePicker.picker.delegate = self;
     self.leaguePicker.picker.dataSource = self;
     self.leaguePicker.picker.tag = LEAGUE_TAG;
-    self.scoresSwitch.on = YES;
-    self.scoresFromThisCourseSwitch.on = YES;
+    self.scoresSwitch.on = NO;
+    self.scoresFromThisCourseSwitch.on = NO;
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;

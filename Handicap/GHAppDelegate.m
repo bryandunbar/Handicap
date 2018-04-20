@@ -8,14 +8,14 @@
 
 #import "GHAppDelegate.h"
 #import "GHPlayer.h"
-#import "GHDatabaseBackup.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "SSKeychain.h"
 
-@interface GHAppDelegate ()
+@interface GHAppDelegate ()  {
+    BOOL justRestored;
+}
 
-@property (nonatomic,strong) GHDatabaseBackup *dbBackup;
 @end
 
 
@@ -49,18 +49,19 @@
     //[SSKeychain deletePasswordForService:@"com.ipwntech.Handicap" account:@"user"];
 
     
-    [Parse setApplicationId:@"NaL346pR9M1qgJfOyf3g1adTt4e4lxNrmnl9dKo9"
-                  clientKey:@"0cBl3FKFQTtmNqOKYZqe8GE9hnIzcDqc9SoBb1TD"];
+    //[Parse setApplicationId:@"NaL346pR9M1qgJfOyf3g1adTt4e4lxNrmnl9dKo9"
+     //             clientKey:@"0cBl3FKFQTtmNqOKYZqe8GE9hnIzcDqc9SoBb1TD"];
     
     // Determine if the Database exists
     NSString *dbPath = [SSManagedObject persistentStoreURL].path;
     BOOL dbExists = [[NSFileManager defaultManager] fileExistsAtPath:dbPath];
     if (!dbExists) {
         
-        [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
-        [self.dbBackup restoreDatabaseWithCompletion:^{
-            [MBProgressHUD hideHUDForView:self.window.rootViewController.view animated:YES];
-        }];
+        //[MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
+        //justRestored = YES;
+        //[self.dbBackup restoreDatabaseWithCompletion:^{
+        //    [MBProgressHUD hideHUDForView:self.window.rootViewController.view animated:YES];
+        //}];
     }
     
     
@@ -69,16 +70,16 @@
 
 -(void)writeDBBackup {
     
-    [self.dbBackup backupDatabaseWithCompletion:^{
+    //[self.dbBackup backupDatabaseWithCompletion:^{
         
-    }];
+    //}];
     
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [self writeDBBackup];
+    //[self writeDBBackup];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -96,9 +97,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //if (!justRestored) {
+    //    [self writeDBBackup];
+    //}
+    
+    //justRestored = NO;
 }
 -(void)applicationWillTerminate:(UIApplication *)application {
-    [self writeDBBackup];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {

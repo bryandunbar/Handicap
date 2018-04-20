@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GHDatabaseBackup.h"
+
 
 @interface GHAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) GHDatabaseBackup *dbBackup;
 
 @end

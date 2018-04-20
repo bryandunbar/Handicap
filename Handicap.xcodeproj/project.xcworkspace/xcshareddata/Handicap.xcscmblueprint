@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "27DBAB9B824BEE7936F626E7E0184D59B29D62D7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924" : 0,
+    "27DBAB9B824BEE7936F626E7E0184D59B29D62D7" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B8259E4C-DCA7-4DE0-B3BA-11171F72D5D7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924" : "HandicapUQ_ios_shared",
+    "27DBAB9B824BEE7936F626E7E0184D59B29D62D7" : "Handicap\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Handicap",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Handicap.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bryandunbar\/Handicap.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "27DBAB9B824BEE7936F626E7E0184D59B29D62D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/subversion.assembla.com\/svn\/uqueue",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "f28347a3-5ccf-49e8-b87c-76095cf9d58b++8924"
+    }
+  ]
+}
