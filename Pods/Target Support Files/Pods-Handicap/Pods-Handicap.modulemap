@@ -1,0 +1,6 @@
+module Pods_Handicap {
+  umbrella header "Pods-Handicap-umbrella.h"
+
+  export *
+  module * { export * }
+}

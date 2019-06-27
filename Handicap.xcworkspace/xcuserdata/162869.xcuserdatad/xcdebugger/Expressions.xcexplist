@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Importer.go():Importer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "xls.parseSharedStrings()">
+            </PersistentString>
+            <PersistentString
+               value = "ws.cells(atColumns: [1], rows: [index])">
+            </PersistentString>
+            <PersistentString
+               value = "Date(timeIntervalSince1970: 43485+86400*1000)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

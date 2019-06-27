@@ -7,20 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E392A6EF1AEDD29400B34F04 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6ED1AEDD29400B34F04 /* Parse.framework */; };
-		E392A6F01AEDD29400B34F04 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6EE1AEDD29400B34F04 /* Bolts.framework */; };
+		0B04548522C3AB0C003E6A10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B04548422C3AB0C003E6A10 /* Constants.swift */; };
+		0B04548722C3B33A003E6A10 /* GHImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B04548622C3B33A003E6A10 /* GHImportViewController.swift */; };
+		0B04548922C3C5C0003E6A10 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B04548822C3C5C0003E6A10 /* CloudKit.framework */; };
+		0B04548B22C3DDBF003E6A10 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B04548A22C3DDBF003E6A10 /* Importer.swift */; };
+		ADD5E610E8C24FD4E0970D31 /* libPods-Handicap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB7C36A253DF640DA7CAF17 /* libPods-Handicap.a */; };
 		E392A6F21AEDD3B500B34F04 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F11AEDD3B500B34F04 /* MobileCoreServices.framework */; };
 		E392A6F41AEDD3C000B34F04 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F31AEDD3C000B34F04 /* SystemConfiguration.framework */; };
 		E392A6F61AEDD3C600B34F04 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F51AEDD3C600B34F04 /* libz.dylib */; };
 		E392A6F91AEDDBA500B34F04 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E392A6F81AEDDBA500B34F04 /* SSKeychain.m */; };
 		E392A6FB1AEDDBAE00B34F04 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6FA1AEDDBAE00B34F04 /* Security.framework */; };
-		E392A7021AEF1A5900B34F04 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F51AEDD3C600B34F04 /* libz.dylib */; };
 		E392A7101AEF1A7400B34F04 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E392A7061AEF1A7400B34F04 /* ioapi.c */; };
 		E392A7111AEF1A7400B34F04 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E392A7081AEF1A7400B34F04 /* mztools.c */; };
 		E392A7121AEF1A7400B34F04 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E392A70A1AEF1A7400B34F04 /* unzip.c */; };
 		E392A7131AEF1A7400B34F04 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E392A70C1AEF1A7400B34F04 /* zip.c */; };
 		E392A7141AEF1A7400B34F04 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = E392A70F1AEF1A7400B34F04 /* SSZipArchive.m */; };
-		E392A71A1AEF1EED00B34F04 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E392A7191AEF1EED00B34F04 /* MBProgressHUD.m */; };
 		E392A71D1AEF1F0F00B34F04 /* GHDatabaseBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = E392A71C1AEF1F0F00B34F04 /* GHDatabaseBackup.m */; };
 		E3B94257196F87BD008171E7 /* GHWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B94256196F87BD008171E7 /* GHWebViewController.m */; };
 		E3FD299318D9C17200E595A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FD299218D9C17200E595A1 /* Foundation.framework */; };
@@ -29,11 +30,6 @@
 		E3FD299D18D9C17200E595A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3FD299B18D9C17200E595A1 /* InfoPlist.strings */; };
 		E3FD299F18D9C17200E595A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD299E18D9C17200E595A1 /* main.m */; };
 		E3FD29A318D9C17200E595A1 /* GHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD29A218D9C17200E595A1 /* GHAppDelegate.m */; };
-		E3FD29AC18D9C17200E595A1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FD29AB18D9C17200E595A1 /* XCTest.framework */; };
-		E3FD29AD18D9C17200E595A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FD299218D9C17200E595A1 /* Foundation.framework */; };
-		E3FD29AE18D9C17200E595A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FD299618D9C17200E595A1 /* UIKit.framework */; };
-		E3FD29B618D9C17300E595A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E3FD29B418D9C17300E595A1 /* InfoPlist.strings */; };
-		E3FD29B818D9C17300E595A1 /* HandicapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD29B718D9C17300E595A1 /* HandicapTests.m */; };
 		E3FD29FD18D9C1B200E595A1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FD29C118D9C1B200E595A1 /* Default-568h@2x.png */; };
 		E3FD29FE18D9C1B200E595A1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FD29C218D9C1B200E595A1 /* Default.png */; };
 		E3FD29FF18D9C1B200E595A1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FD29C318D9C1B200E595A1 /* Default@2x.png */; };
@@ -85,20 +81,16 @@
 		E3FDE04D18DBCDB800EDEE5D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3FDE04C18DBCDB800EDEE5D /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E3FD29AF18D9C17300E595A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3FD298718D9C17200E595A1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E3FD298E18D9C17200E595A1;
-			remoteInfo = Handicap;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		0B04548322C3AB0C003E6A10 /* Handicap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Handicap-Bridging-Header.h"; sourceTree = "<group>"; };
+		0B04548422C3AB0C003E6A10 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0B04548622C3B33A003E6A10 /* GHImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHImportViewController.swift; sourceTree = "<group>"; };
+		0B04548822C3C5C0003E6A10 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0B04548A22C3DDBF003E6A10 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
+		2E33CE9941F56A04BED5E612 /* Pods-Handicap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handicap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Handicap/Pods-Handicap.debug.xcconfig"; sourceTree = "<group>"; };
+		ACB7C36A253DF640DA7CAF17 /* libPods-Handicap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Handicap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE47984E3C805B96B6AA2E0B /* Pods-Handicap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handicap.release.xcconfig"; path = "Pods/Target Support Files/Pods-Handicap/Pods-Handicap.release.xcconfig"; sourceTree = "<group>"; };
 		E392A6EC1AEDC7D100B34F04 /* Handicap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Handicap.entitlements; sourceTree = "<group>"; };
-		E392A6ED1AEDD29400B34F04 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		E392A6EE1AEDD29400B34F04 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E392A6F11AEDD3B500B34F04 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E392A6F31AEDD3C000B34F04 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E392A6F51AEDD3C600B34F04 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -116,8 +108,6 @@
 		E392A70D1AEF1A7400B34F04 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		E392A70E1AEF1A7400B34F04 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		E392A70F1AEF1A7400B34F04 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		E392A7181AEF1EED00B34F04 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		E392A7191AEF1EED00B34F04 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E392A71B1AEF1F0F00B34F04 /* GHDatabaseBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHDatabaseBackup.h; path = Handicap/GHDatabaseBackup.h; sourceTree = "<group>"; };
 		E392A71C1AEF1F0F00B34F04 /* GHDatabaseBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHDatabaseBackup.m; path = Handicap/GHDatabaseBackup.m; sourceTree = "<group>"; };
 		E3B94255196F87BD008171E7 /* GHWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWebViewController.h; sourceTree = "<group>"; };
@@ -132,7 +122,6 @@
 		E3FD29A018D9C17200E595A1 /* Handicap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Handicap-Prefix.pch"; sourceTree = "<group>"; };
 		E3FD29A118D9C17200E595A1 /* GHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAppDelegate.h; sourceTree = "<group>"; };
 		E3FD29A218D9C17200E595A1 /* GHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAppDelegate.m; sourceTree = "<group>"; };
-		E3FD29AA18D9C17200E595A1 /* HandicapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HandicapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3FD29AB18D9C17200E595A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E3FD29B318D9C17300E595A1 /* HandicapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HandicapTests-Info.plist"; sourceTree = "<group>"; };
 		E3FD29B518D9C17300E595A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -235,29 +224,27 @@
 				E392A6FB1AEDDBAE00B34F04 /* Security.framework in Frameworks */,
 				E392A6F61AEDD3C600B34F04 /* libz.dylib in Frameworks */,
 				E392A6F41AEDD3C000B34F04 /* SystemConfiguration.framework in Frameworks */,
+				0B04548922C3C5C0003E6A10 /* CloudKit.framework in Frameworks */,
 				E392A6F21AEDD3B500B34F04 /* MobileCoreServices.framework in Frameworks */,
-				E392A6F01AEDD29400B34F04 /* Bolts.framework in Frameworks */,
 				E3FD299518D9C17200E595A1 /* CoreGraphics.framework in Frameworks */,
 				E3FD299718D9C17200E595A1 /* UIKit.framework in Frameworks */,
-				E392A6EF1AEDD29400B34F04 /* Parse.framework in Frameworks */,
 				E3FD299318D9C17200E595A1 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E3FD29A718D9C17200E595A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E392A7021AEF1A5900B34F04 /* libz.dylib in Frameworks */,
-				E3FD29AC18D9C17200E595A1 /* XCTest.framework in Frameworks */,
-				E3FD29AE18D9C17200E595A1 /* UIKit.framework in Frameworks */,
-				E3FD29AD18D9C17200E595A1 /* Foundation.framework in Frameworks */,
+				ADD5E610E8C24FD4E0970D31 /* libPods-Handicap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29E8B58FB46789F2E370794B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E33CE9941F56A04BED5E612 /* Pods-Handicap.debug.xcconfig */,
+				DE47984E3C805B96B6AA2E0B /* Pods-Handicap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E392A7031AEF1A7400B34F04 /* SSZipArchive */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,15 +274,12 @@
 		E3FD298618D9C17200E595A1 = {
 			isa = PBXGroup;
 			children = (
+				0B04548422C3AB0C003E6A10 /* Constants.swift */,
 				E392A71B1AEF1F0F00B34F04 /* GHDatabaseBackup.h */,
 				E392A71C1AEF1F0F00B34F04 /* GHDatabaseBackup.m */,
-				E392A7181AEF1EED00B34F04 /* MBProgressHUD.h */,
-				E392A7191AEF1EED00B34F04 /* MBProgressHUD.m */,
 				E392A7031AEF1A7400B34F04 /* SSZipArchive */,
 				E392A6F71AEDDBA500B34F04 /* SSKeychain.h */,
 				E392A6F81AEDDBA500B34F04 /* SSKeychain.m */,
-				E392A6ED1AEDD29400B34F04 /* Parse.framework */,
-				E392A6EE1AEDD29400B34F04 /* Bolts.framework */,
 				E3FDE04C18DBCDB800EDEE5D /* Media.xcassets */,
 				E3FD2B7B18D9C3F400E595A1 /* UQ_ios_shared */,
 				E3FD2A1C18D9C23E00E595A1 /* SSDataKit */,
@@ -303,6 +287,8 @@
 				E3FD29B118D9C17300E595A1 /* HandicapTests */,
 				E3FD299118D9C17200E595A1 /* Frameworks */,
 				E3FD299018D9C17200E595A1 /* Products */,
+				29E8B58FB46789F2E370794B /* Pods */,
+				0B04548322C3AB0C003E6A10 /* Handicap-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				E3FD298F18D9C17200E595A1 /* Handicap.app */,
-				E3FD29AA18D9C17200E595A1 /* HandicapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -318,6 +303,7 @@
 		E3FD299118D9C17200E595A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B04548822C3C5C0003E6A10 /* CloudKit.framework */,
 				E392A6FA1AEDDBAE00B34F04 /* Security.framework */,
 				E392A6F51AEDD3C600B34F04 /* libz.dylib */,
 				E392A6F31AEDD3C000B34F04 /* SystemConfiguration.framework */,
@@ -326,6 +312,7 @@
 				E3FD299418D9C17200E595A1 /* CoreGraphics.framework */,
 				E3FD299618D9C17200E595A1 /* UIKit.framework */,
 				E3FD29AB18D9C17200E595A1 /* XCTest.framework */,
+				ACB7C36A253DF640DA7CAF17 /* libPods-Handicap.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -423,6 +410,7 @@
 				E3FD29DB18D9C1B200E595A1 /* GHHandicapCalculator.m */,
 				E3FD29DC18D9C1B200E595A1 /* GHPrintFormmater.h */,
 				E3FD29DD18D9C1B200E595A1 /* GHPrintFormmater.m */,
+				0B04548A22C3DDBF003E6A10 /* Importer.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -464,6 +452,7 @@
 				E3FD2B7918D9C3C100E595A1 /* BDPickerField.m */,
 				E3B94255196F87BD008171E7 /* GHWebViewController.h */,
 				E3B94256196F87BD008171E7 /* GHWebViewController.m */,
+				0B04548622C3B33A003E6A10 /* GHImportViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -520,6 +509,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3FD29BB18D9C17300E595A1 /* Build configuration list for PBXNativeTarget "Handicap" */;
 			buildPhases = (
+				09A6ED679C695B7AD9CB1A74 /* [CP] Check Pods Manifest.lock */,
 				E3FD298B18D9C17200E595A1 /* Sources */,
 				E3FD298C18D9C17200E595A1 /* Frameworks */,
 				E3FD298D18D9C17200E595A1 /* Resources */,
@@ -533,24 +523,6 @@
 			productReference = E3FD298F18D9C17200E595A1 /* Handicap.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E3FD29A918D9C17200E595A1 /* HandicapTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E3FD29BE18D9C17300E595A1 /* Build configuration list for PBXNativeTarget "HandicapTests" */;
-			buildPhases = (
-				E3FD29A618D9C17200E595A1 /* Sources */,
-				E3FD29A718D9C17200E595A1 /* Frameworks */,
-				E3FD29A818D9C17200E595A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E3FD29B018D9C17300E595A1 /* PBXTargetDependency */,
-			);
-			name = HandicapTests;
-			productName = HandicapTests;
-			productReference = E3FD29AA18D9C17200E595A1 /* HandicapTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -562,15 +534,16 @@
 				ORGANIZATIONNAME = bdun;
 				TargetAttributes = {
 					E3FD298E18D9C17200E595A1 = {
-						DevelopmentTeam = 8D5DR6HDEC;
+						DevelopmentTeam = 87CP4QGJ32;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
-					};
-					E3FD29A918D9C17200E595A1 = {
-						TestTargetID = E3FD298E18D9C17200E595A1;
 					};
 				};
 			};
@@ -587,7 +560,6 @@
 			projectRoot = "";
 			targets = (
 				E3FD298E18D9C17200E595A1 /* Handicap */,
-				E3FD29A918D9C17200E595A1 /* HandicapTests */,
 			);
 		};
 /* End PBXProject section */
@@ -612,21 +584,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E3FD29A818D9C17200E595A1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09A6ED679C695B7AD9CB1A74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3FD29B618D9C17300E595A1 /* InfoPlist.strings in Resources */,
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Handicap-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E3FD298B18D9C17200E595A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B04548722C3B33A003E6A10 /* GHImportViewController.swift in Sources */,
 				E392A7101AEF1A7400B34F04 /* ioapi.c in Sources */,
 				E3FDE04B18DBC74100EDEE5D /* GHSelectPlayersViewController.m in Sources */,
 				E3FD2A3418D9C23E00E595A1 /* SSManagedCollectionViewController.m in Sources */,
@@ -652,13 +638,13 @@
 				E3FD2A0918D9C1B200E595A1 /* GHPlayer.m in Sources */,
 				E3FD2A1018D9C1B200E595A1 /* GHCoursesViewController.m in Sources */,
 				E3FD2B8A18D9C44300E595A1 /* NSString+Additions.m in Sources */,
+				0B04548522C3AB0C003E6A10 /* Constants.swift in Sources */,
 				E392A6F91AEDDBA500B34F04 /* SSKeychain.m in Sources */,
 				E3FD2B8418D9C3F400E595A1 /* NSObject+AlertHelper.m in Sources */,
 				E3FD2B8718D9C3F400E595A1 /* UQFormViewController.m in Sources */,
 				E3FD2A1618D9C1B200E595A1 /* GHPlayerScoreCell.m in Sources */,
 				E3FD2A1418D9C1B200E595A1 /* GHLeaguesViewController.m in Sources */,
 				E3FD2A0D18D9C1B200E595A1 /* GHAddOrEditCourseViewController.m in Sources */,
-				E392A71A1AEF1EED00B34F04 /* MBProgressHUD.m in Sources */,
 				E3FD2A0A18D9C1B200E595A1 /* GHScore.m in Sources */,
 				E3FD2A3218D9C23E00E595A1 /* SSFilteredResultsFilter.m in Sources */,
 				E3FD2A1218D9C1B200E595A1 /* GHHandicapListViewController.m in Sources */,
@@ -672,6 +658,7 @@
 				E392A7111AEF1A7400B34F04 /* mztools.c in Sources */,
 				E3FD2B8618D9C3F400E595A1 /* UQFormTableViewController.m in Sources */,
 				E392A7131AEF1A7400B34F04 /* zip.c in Sources */,
+				0B04548B22C3DDBF003E6A10 /* Importer.swift in Sources */,
 				E3FD2A1118D9C1B200E595A1 /* GHEditScoreViewController.m in Sources */,
 				E3FD2A0C18D9C1B200E595A1 /* GHPrintFormmater.m in Sources */,
 				E3FD2A1818D9C1B200E595A1 /* GHPostScoresViewController.m in Sources */,
@@ -679,23 +666,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E3FD29A618D9C17200E595A1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E3FD29B818D9C17300E595A1 /* HandicapTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E3FD29B018D9C17300E595A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E3FD298E18D9C17200E595A1 /* Handicap */;
-			targetProxy = E3FD29AF18D9C17300E595A1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E3FD299B18D9C17200E595A1 /* InfoPlist.strings */ = {
@@ -810,11 +781,15 @@
 		};
 		E3FD29BC18D9C17300E595A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E33CE9941F56A04BED5E612 /* Pods-Handicap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Handicap/Handicap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 87CP4QGJ32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -823,20 +798,29 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.bdunbar.handicapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Handicap-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		E3FD29BD18D9C17300E595A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE47984E3C805B96B6AA2E0B /* Pods-Handicap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Handicap/Handicap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 87CP4QGJ32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -845,50 +829,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.bdunbar.handicapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Handicap-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		E3FD29BF18D9C17300E595A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Handicap.app/Handicap";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "HandicapTests/HandicapTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		E3FD29C018D9C17300E595A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Handicap.app/Handicap";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Handicap/Handicap-Prefix.pch";
-				INFOPLIST_FILE = "HandicapTests/HandicapTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -909,15 +857,6 @@
 			buildConfigurations = (
 				E3FD29BC18D9C17300E595A1 /* Debug */,
 				E3FD29BD18D9C17300E595A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E3FD29BE18D9C17300E595A1 /* Build configuration list for PBXNativeTarget "HandicapTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E3FD29BF18D9C17300E595A1 /* Debug */,
-				E3FD29C018D9C17300E595A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

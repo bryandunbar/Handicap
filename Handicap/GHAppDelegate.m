@@ -8,7 +8,6 @@
 
 #import "GHAppDelegate.h"
 #import "GHPlayer.h"
-#import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "SSKeychain.h"
 
@@ -48,9 +47,6 @@
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     //[SSKeychain deletePasswordForService:@"com.ipwntech.Handicap" account:@"user"];
 
-    
-    //[Parse setApplicationId:@"NaL346pR9M1qgJfOyf3g1adTt4e4lxNrmnl9dKo9"
-     //             clientKey:@"0cBl3FKFQTtmNqOKYZqe8GE9hnIzcDqc9SoBb1TD"];
     
     // Determine if the Database exists
     NSString *dbPath = [SSManagedObject persistentStoreURL].path;

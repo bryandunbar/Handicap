@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SSZipArchive.h"
 #import "SSManagedObject.h"
-#import <Parse/Parse.h>
 
 @interface GHDatabaseBackup : NSObject
 
