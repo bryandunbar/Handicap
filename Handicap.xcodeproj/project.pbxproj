@@ -11,6 +11,8 @@
 		0B04548722C3B33A003E6A10 /* GHImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B04548622C3B33A003E6A10 /* GHImportViewController.swift */; };
 		0B04548922C3C5C0003E6A10 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B04548822C3C5C0003E6A10 /* CloudKit.framework */; };
 		0B04548B22C3DDBF003E6A10 /* Importer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B04548A22C3DDBF003E6A10 /* Importer.swift */; };
+		0B5378012438B35F0057D9AC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B5378002438B35F0057D9AC /* Launch Screen.storyboard */; };
+		0B5378052438B5AE0057D9AC /* NSObject+AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5378042438B5AE0057D9AC /* NSObject+AlertHelper.m */; };
 		ADD5E610E8C24FD4E0970D31 /* libPods-Handicap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB7C36A253DF640DA7CAF17 /* libPods-Handicap.a */; };
 		E392A6F21AEDD3B500B34F04 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F11AEDD3B500B34F04 /* MobileCoreServices.framework */; };
 		E392A6F41AEDD3C000B34F04 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392A6F31AEDD3C000B34F04 /* SystemConfiguration.framework */; };
@@ -87,6 +89,9 @@
 		0B04548622C3B33A003E6A10 /* GHImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHImportViewController.swift; sourceTree = "<group>"; };
 		0B04548822C3C5C0003E6A10 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0B04548A22C3DDBF003E6A10 /* Importer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
+		0B5378002438B35F0057D9AC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		0B5378032438B5AE0057D9AC /* NSObject+AlertHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+AlertHelper.h"; sourceTree = "<group>"; };
+		0B5378042438B5AE0057D9AC /* NSObject+AlertHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AlertHelper.m"; sourceTree = "<group>"; };
 		2E33CE9941F56A04BED5E612 /* Pods-Handicap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handicap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Handicap/Pods-Handicap.debug.xcconfig"; sourceTree = "<group>"; };
 		ACB7C36A253DF640DA7CAF17 /* libPods-Handicap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Handicap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE47984E3C805B96B6AA2E0B /* Pods-Handicap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handicap.release.xcconfig"; path = "Pods/Target Support Files/Pods-Handicap/Pods-Handicap.release.xcconfig"; sourceTree = "<group>"; };
@@ -274,6 +279,7 @@
 		E3FD298618D9C17200E595A1 = {
 			isa = PBXGroup;
 			children = (
+				0B5378002438B35F0057D9AC /* Launch Screen.storyboard */,
 				0B04548422C3AB0C003E6A10 /* Constants.swift */,
 				E392A71B1AEF1F0F00B34F04 /* GHDatabaseBackup.h */,
 				E392A71C1AEF1F0F00B34F04 /* GHDatabaseBackup.m */,
@@ -334,6 +340,8 @@
 				E3FD29A118D9C17200E595A1 /* GHAppDelegate.h */,
 				E3FD29A218D9C17200E595A1 /* GHAppDelegate.m */,
 				E3FD299918D9C17200E595A1 /* Supporting Files */,
+				0B5378032438B5AE0057D9AC /* NSObject+AlertHelper.h */,
+				0B5378042438B5AE0057D9AC /* NSObject+AlertHelper.m */,
 			);
 			path = Handicap;
 			sourceTree = "<group>";
@@ -552,6 +560,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = E3FD298618D9C17200E595A1;
@@ -573,6 +582,7 @@
 				E3FD2A0118D9C1B200E595A1 /* MainStoryboard.storyboard in Resources */,
 				E3FD2A0418D9C1B200E595A1 /* 129-golf@2x.png in Resources */,
 				E3FD2A0618D9C1B200E595A1 /* 14-gear@2x.png in Resources */,
+				0B5378012438B35F0057D9AC /* Launch Screen.storyboard in Resources */,
 				E3FD29FF18D9C1B200E595A1 /* Default@2x.png in Resources */,
 				E3FD299D18D9C17200E595A1 /* InfoPlist.strings in Resources */,
 				E3FD29FE18D9C1B200E595A1 /* Default.png in Resources */,
@@ -636,6 +646,7 @@
 				E3FD2A1718D9C1B200E595A1 /* GHPlayersViewController.m in Sources */,
 				E3FD2A1918D9C1B200E595A1 /* GHScoreCell.m in Sources */,
 				E3FD2A0918D9C1B200E595A1 /* GHPlayer.m in Sources */,
+				0B5378052438B5AE0057D9AC /* NSObject+AlertHelper.m in Sources */,
 				E3FD2A1018D9C1B200E595A1 /* GHCoursesViewController.m in Sources */,
 				E3FD2B8A18D9C44300E595A1 /* NSString+Additions.m in Sources */,
 				0B04548522C3AB0C003E6A10 /* Constants.swift in Sources */,
@@ -800,6 +811,7 @@
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = org.bdunbar.handicapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -831,6 +843,7 @@
 				INFOPLIST_FILE = "Handicap/Handicap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = org.bdunbar.handicapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

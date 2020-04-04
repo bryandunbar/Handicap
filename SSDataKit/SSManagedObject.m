@@ -365,6 +365,7 @@ static NSString *const kURIRepresentationKey = @"URIRepresentation";
 
 - (void)delete {
 	[self.managedObjectContext deleteObject:self];
+    [self save];
 }
 
 
