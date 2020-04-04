@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -882,14 +882,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 Scores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDh-mP-oPx">
-                                                    <rect key="frame" x="30" y="12" width="68" height="21"/>
+                                                    <rect key="frame" x="30" y="12" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yDh-mP-oPx" secondAttribute="trailing" constant="242" id="Nzu-an-QSN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yDh-mP-oPx" secondAttribute="trailing" id="Nzu-an-QSN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
@@ -1000,7 +1000,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVv-bj-K7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5379.1999999999998" y="-1594.9025487256374"/>
+            <point key="canvasLocation" x="4873" y="-995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mFx-MS-iIU">
@@ -1452,13 +1452,13 @@
             <point key="canvasLocation" x="5968" y="-1594.9025487256374"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="129-golf.png" width="29" height="26"/>
-        <image name="14-gear.png" width="19" height="19"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aYF-mu-Zjt"/>
         <segue reference="fod-zA-HCB"/>
         <segue reference="Fnl-fO-Iy6"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="129-golf.png" width="29" height="26"/>
+        <image name="14-gear.png" width="19" height="19"/>
+    </resources>
 </document>

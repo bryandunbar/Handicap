@@ -20,6 +20,7 @@
 -(void)awakeFromNib {
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _tableView.translatesAutoresizingMaskIntoConstraints = YES;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _clearsSelectionOnViewWillAppear = YES;
