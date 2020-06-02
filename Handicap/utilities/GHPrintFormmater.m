@@ -26,30 +26,56 @@
     }
     return _formatter;
 }
--(NSString*)htmlRankingForData:(NSArray *)data league:(GHLeague*)league andCourse:(GHCourse *)course {
+-(NSString*)htmlRankingForData:(NSArray *)data league:(GHLeague*)league andCourses:(NSArray*)courses {
 
     NSMutableString *html = [NSMutableString stringWithString:@"<html><body>"];
     
-    if (course) {
-        [html appendFormat:@"<div style='font-size:20; font-weight:bold'>Trend Listing for %@</br>%@</div>", league.name, [course description]];
+    if (courses[0]) {
+        [html appendFormat:@"<div style='font-size:20; font-weight:bold'>Trend Listing for %@</br>%@</div>", league.name, [courses[0] name]];
     } else {
         [html appendFormat:@"<div style='font-size:20; font-weight:bold'>Index Listing for %@</div>", league.name];
     }
     
     [html appendString:@"<hr/>"];
     [html appendString:@"<table style='width:100%'>"];
+
+    int totalCols = 1; //Player Name
+    int playerNameColSpan = 0;
+    if (courses.count <=1) {
+        totalCols = totalCols + 1;
+        playerNameColSpan = 1;
+    } else {
+        totalCols = totalCols + courses.count;
+        playerNameColSpan = totalCols - courses.count;
+    }
+    
+    // TEES Headers
+    if (courses) {
+        [html appendString:@"<tr>"];
+        [html appendFormat:@"<td colspan='%d'>&nbsp;</td>", playerNameColSpan];
+        for (GHCourse *course in courses) {
+            [html appendFormat:@"<td style='text-align:center;width:100px'><h3>%@</h3></td>", course.tees];
+        }
+        [html appendString:@"</tr>"];
+    }
     
     for (NSDictionary *dict in data) {
         GHPlayer *player = dict[@"player"];
 
-        NSString *handicap = nil;
-        if (course) { // Showing trends
-            handicap = [self trendValueFromDict:dict];
+        [html appendString:@"<tr>"];
+        [html appendFormat:@"<td>%@</td>", [player description]];
+
+        if (courses) {
+            for (GHCourse *course in courses) {
+                [html appendFormat:@"<td style='text-align:center;width:100px'><h3>%@</h3></td>", [self trendValueFromDict:dict forCourse:course]];
+            }
         } else {
-            handicap = [self indexValueFromDict:dict];
+            // Show Index
+            [html appendFormat:@"<td style='text-align:center;width:100px'><h3>%@</h3></td>", [self indexValueFromDict:dict]];
         }
         
-        [html appendFormat:@"<tr><td><h3>%@</h3></td><td style='text-align:right'><h3>%@</h3></td></tr>", [player description], handicap];
+        [html appendString:@"</tr>"];
+        
     }
         
     [html appendString:@"</table>"];
@@ -64,7 +90,7 @@
 #define ROWS_PER_PAGE 4
 #define SCORES_PER_ROW 5
 
--(NSString*)htmlCardsForData:(NSArray *)array league:(GHLeague *)league andCourse:(GHCourse *)course showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
+-(NSString*)htmlCardsForData:(NSArray *)array league:(GHLeague *)league andCourses:(NSArray *)courses showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
     NSMutableString *html = [NSMutableString stringWithString:@"<html><body>"];
 
     
@@ -84,7 +110,7 @@
         
         [html appendString:@"<td style='width:50%'>"];
         NSDictionary *dict = array[i];
-        [html appendString:[self htmlCardForPlayer:dict league:league andCourse:course showThisLeageOnly:showThisCourseOnly showThisCourseOnly:showThisCourseOnly]];
+        [html appendString:[self htmlCardForPlayer:dict league:league andCourses:courses showThisLeageOnly:showThisCourseOnly showThisCourseOnly:showThisCourseOnly]];
         [html appendString:@"</td>"];
     }
     
@@ -95,12 +121,11 @@
 }
 
 
--(NSString*)htmlCardForPlayer:(NSDictionary *)printDict league:(GHLeague *)league andCourse:(GHCourse *)course showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
+-(NSString*)htmlCardForPlayer:(NSDictionary *)printDict league:(GHLeague *)league andCourses:(NSArray *)courses showThisLeageOnly:(BOOL)showThisLeagueOnly showThisCourseOnly:(BOOL)showThisCourseOnly {
     
     GHPlayer *player = printDict[@"player"];
     NSArray *usedScores = printDict[@"usedScores"];
     NSString *handicapIndex = [self indexValueFromDict:printDict];
-    NSString *trend = [self trendValueFromDict:printDict];
     NSDate *date = [NSDate date];
     
     
@@ -111,7 +136,7 @@
     }
     
     if (showThisCourseOnly) {
-        NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", course];
+        NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", courses[0]];
         if (!predicate) {
             predicate = subPredicate;
         } else {
@@ -133,10 +158,18 @@
     [html appendFormat:@"<td coslpan='1' style='text-align:right'><strong>%@</strong></td>", handicapIndex];
     [html appendString:@"</tr>"];
 
-    [html appendString:@"<tr>"];
     //[html appendString:@"<td colspan='2'><strong>Course</strong</td>"];
-    [html appendFormat:@"<td colspan='4'><strong>%@</strong></td>", [course description]];
-    [html appendFormat:@"<td coslpan='1' style='text-align:right'><strong>%@</strong></td>", trend];
+    if (courses) {
+        for (GHCourse *course in courses) {
+            [html appendString:@"<tr>"];
+            [html appendFormat:@"<td colspan='4'><strong>%@</strong></td>", [course description]];
+            NSString *trend = [self trendValueFromDict:printDict forCourse:course];
+            [html appendFormat:@"<td coslpan='1' style='text-align:right'><strong>%@</strong></td>", trend];
+            [html appendString:@"<tr>"];
+        }
+    } else {
+        [html appendString:@"<tr><td colspan='5'>&nbsp;</td></td>"];
+    }
     [html appendString:@"</tr>"];
 
     [html appendString:@"<tr>"];
@@ -180,8 +213,8 @@
     
 }
 
--(NSString*)trendValueFromDict:(NSDictionary*)printDict {
-    NSUInteger trend = [printDict[@"trend"] unsignedIntegerValue];
+-(NSString*)trendValueFromDict:(NSDictionary*)printDict forCourse:(GHCourse *)course {
+    NSUInteger trend = [printDict[@"trend"][[course description]] unsignedIntegerValue];
     if (trend == NSNotFound)
         return @"NH";
     else

@@ -18,8 +18,9 @@ typedef enum GHHandicapListViewPrintOptions {
 
 @interface GHHandicapListViewController : UITableViewController
 
-@property (nonatomic,strong) GHCourse *course; /** If nil, show indices **/
+@property (nonatomic,strong) NSArray *courses; /** If nil, or empty, show indices **/
 @property (nonatomic,strong) GHLeague *league;
+@property (nonatomic,strong) NSString *tees; /** If nil, show all tees for the course */
 @property (nonatomic) BOOL useScoresFromSelectedLeagueOnly;
 @property (nonatomic) BOOL useScoresFromSelectedCourseOnly;
 @end

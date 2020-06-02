@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,15 +103,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="League" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPk-bH-QbD" customClass="BDPickerField">
-                                                    <rect key="frame" x="30" y="0.5" width="240" height="43"/>
+                                                    <rect key="frame" x="30" y="0.5" width="298" height="43"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="240" id="TXt-zx-iG5"/>
                                                         <constraint firstAttribute="height" constant="43" id="lCH-tr-sCZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="dPk-bH-QbD" secondAttribute="trailing" constant="20" symbolic="YES" id="gsb-CX-tvT"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="dPk-bH-QbD" firstAttribute="centerY" secondItem="Dsa-7g-brM" secondAttribute="centerY" id="7VI-pz-edk"/>
@@ -127,23 +128,50 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Course" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DO4-qw-wVH" customClass="BDPickerField">
-                                                    <rect key="frame" x="30" y="0.0" width="240" height="43"/>
+                                                    <rect key="frame" x="30" y="0.0" width="298" height="43"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="240" id="iQ4-nj-LoP"/>
                                                         <constraint firstAttribute="height" constant="43" id="yNK-UL-inQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="DO4-qw-wVH" secondAttribute="trailing" constant="20" symbolic="YES" id="pxf-qO-zBV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="DO4-qw-wVH" firstAttribute="top" secondItem="w2G-C4-JJT" secondAttribute="top" id="TYd-tH-9pU"/>
                                             <constraint firstItem="DO4-qw-wVH" firstAttribute="leading" secondItem="w2G-C4-JJT" secondAttribute="leading" constant="30" id="sW1-zO-Hen"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="Osx-kU-dus">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHTeesCell" rowHeight="44" id="1Zm-gp-ntp" userLabel="GHTeesCell">
                                         <rect key="frame" x="0.0" y="98" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Zm-gp-ntp" id="QLI-hh-hYL">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tees" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oq8-3x-PHJ" customClass="BDPickerField">
+                                                    <rect key="frame" x="30" y="0.0" width="298" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="43" id="8nK-8P-CEE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="oq8-3x-PHJ" secondAttribute="trailing" constant="20" symbolic="YES" id="MH3-AS-XDo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="oq8-3x-PHJ" firstAttribute="leading" secondItem="1Zm-gp-ntp" secondAttribute="leading" constant="30" id="lnw-aK-B51"/>
+                                            <constraint firstItem="oq8-3x-PHJ" firstAttribute="top" secondItem="1Zm-gp-ntp" secondAttribute="top" id="qwo-U8-oz6"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="Osx-kU-dus">
+                                        <rect key="frame" x="0.0" y="142" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Osx-kU-dus" id="Lzg-a8-gAS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -171,8 +199,8 @@
                                             <constraint firstItem="Xhx-Fc-lmK" firstAttribute="centerY" secondItem="Uwp-Rc-thP" secondAttribute="centerY" id="y1Y-he-4kd"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="wcz-W4-3VV">
-                                        <rect key="frame" x="0.0" y="142" width="375" height="44"/>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHScoreSwitchCell" rowHeight="44" id="wcz-W4-3VV">
+                                        <rect key="frame" x="0.0" y="186" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcz-W4-3VV" id="Gd2-Al-eE8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -205,7 +233,7 @@
                             <tableViewSection id="xgT-ak-oi5">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GHButtonCell" rowHeight="44" id="myU-8T-QhD">
-                                        <rect key="frame" x="0.0" y="206" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="250" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myU-8T-QhD" id="Llw-T4-wKQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -246,6 +274,7 @@
                         <outlet property="leaguePicker" destination="dPk-bH-QbD" id="712-4s-reI"/>
                         <outlet property="scoresFromThisCourseSwitch" destination="Uwp-Rc-thP" id="Mjh-Xm-RkJ"/>
                         <outlet property="scoresSwitch" destination="3ou-kM-tdh" id="RcU-kF-Xhs"/>
+                        <outlet property="teesPicker" destination="oq8-3x-PHJ" id="kAr-uV-lmK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikc-Zg-Lmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -293,19 +322,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Handicaps" id="2Lu-r8-B5L"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="kYu-HP-Qpa" id="lf9-eq-YKF"/>
                         <segue destination="l7i-2z-zx4" kind="push" identifier="getHandicapCardsSegue" id="Lcq-Ok-f3t"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvB-nl-5vt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="kYu-HP-Qpa">
-                    <connections>
-                        <outlet property="delegate" destination="Qan-L1-qk7" id="yVK-4Z-Thm"/>
-                        <outlet property="searchContentsController" destination="Qan-L1-qk7" id="Nft-TF-Ie0"/>
-                        <outlet property="searchResultsDataSource" destination="Qan-L1-qk7" id="cQX-2t-bgi"/>
-                        <outlet property="searchResultsDelegate" destination="Qan-L1-qk7" id="eAz-qW-NtX"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3468.8000000000002" y="333.7331334332834"/>
         </scene>

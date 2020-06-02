@@ -27,22 +27,24 @@
     diffRange.location = 0; // Always start at the lowest diff
     
     int numDiffs = differentials.count;
-    if (numDiffs < 5) {
-        return NSNotFound; // Can't even compute if we don't have 5 scores
-    } else if (numDiffs <= 6) {
+    if (numDiffs < 3) {
+        return NSNotFound; // Can't even compute if we don't have 3 scores
+    } else if (numDiffs <= 5) {
         diffRange.length = 1;
     } else if (numDiffs <= 8) {
         diffRange.length = 2;
-    } else if (numDiffs <= 10) {
+    } else if (numDiffs <= 11) {
         diffRange.length = 3;
-    } else if (numDiffs <= 12) {
-        diffRange.length = 4;
     } else if (numDiffs <= 14) {
-        diffRange.length = 5;
+        diffRange.length = 4;
     } else if (numDiffs <= 16) {
+        diffRange.length = 5;
+    } else if (numDiffs <= 18) {
         diffRange.length = 6;
+    } else if (numDiffs <= 19) {
+        diffRange.length = 7;
     } else {
-        diffRange.length = numDiffs - 10;
+        diffRange.length = 8;
     }
     
     // Slice the array
@@ -70,7 +72,8 @@
     
     // Calculate the index
     double avg = sum / slicedDiffs.count;
-    double index = avg * 0.96;
+    //double index = avg * 0.96;
+    double index = avg;
     
     // truncate to 1 decimal
     double indexTruncated = ( (int)(index*10))/10.0;

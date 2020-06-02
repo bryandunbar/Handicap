@@ -31,8 +31,11 @@
     
     // Load the table
     [self getDataWithBlock:^{
-        [self.tableView reloadData];
-        [self preparePrintFormatters];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self.tableView reloadData];
+           [self preparePrintFormatters];
+        });
     }];
 }
 
@@ -62,7 +65,7 @@
         }
         
         if (self.useScoresFromSelectedCourseOnly) {
-            NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", self.course];
+            NSPredicate *subPredicate = [NSPredicate predicateWithFormat:@"course == %@", self.courses[0]];
             if (!predicate) {
                 predicate = subPredicate;
             } else {
@@ -75,15 +78,21 @@
         
         NSArray *usedScores = [NSArray array];
         double index = [calculator handicapIndexForScores:[scores allObjects] usedScores:&usedScores];
-        NSUInteger trend = [calculator courseHandicapForHandicap:index forCourse:self.course];
         
-        NSDictionary *dict = @{@"player":player, @"index":@(index), @"trend":@(trend), @"usedScores":usedScores};
+        // Get the trend for each course
+        NSMutableDictionary *trend = [NSMutableDictionary dictionary];
+        for (GHCourse *course in self.courses) {
+            trend[[course description]] = @([calculator courseHandicapForHandicap:index forCourse:course]);
+        }
+        NSDictionary *dict = @{@"player":player, @"index":@(index), @"trend":[trend copy], @"usedScores":usedScores};
         
         [arr addObject:dict];
         count++;
     }
     
     data = [arr sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"player.lastName" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"player.firstName" ascending:YES]]];
+    
+    
     block();
 }
 
@@ -94,8 +103,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
        
             GHPrintFormmater *pf = [[GHPrintFormmater alloc] init];
-            cardPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlCardsForData:data league:self.league andCourse:self.course showThisLeageOnly:self.useScoresFromSelectedLeagueOnly showThisCourseOnly:self.useScoresFromSelectedCourseOnly]];
-            listPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlRankingForData:data league:self.league andCourse:self.course]];
+            cardPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlCardsForData:data league:self.league andCourses:self.courses showThisLeageOnly:self.useScoresFromSelectedLeagueOnly showThisCourseOnly:self.useScoresFromSelectedCourseOnly]];
+            listPrintFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:[pf htmlRankingForData:data league:self.league andCourses:self.courses]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Ok to show the print button now
@@ -112,6 +121,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (self.courses) {
+        return [self.courses count];
+    }
+    
     return 1;
 }
 
@@ -122,8 +135,8 @@
 }
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if (self.course)
-        return [self.course description];
+    if (self.courses)
+        return [self.courses[section] description];
     else
         return @"Handicap Index";
 }
@@ -137,8 +150,9 @@
     GHPlayer *player = dict[@"player"];
     cell.textLabel.text = [player description];
     
-    if (self.course) { // Showing trends
-        NSUInteger trend = [dict[@"trend"] unsignedIntegerValue];
+    GHCourse *course = [self.courses objectAtIndex:indexPath.section];
+    if (course) { // Showing trends
+        NSUInteger trend = [dict[@"trend"][[course description]] unsignedIntegerValue];
         if (trend == NSNotFound)
             cell.detailTextLabel.text = @"NH";
         else
